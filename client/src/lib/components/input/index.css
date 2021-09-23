@@ -1,0 +1,7 @@
+.input {
+  @apply w-2/12;
+}
+
+.input__label {
+  @apply block text-sm;
+}

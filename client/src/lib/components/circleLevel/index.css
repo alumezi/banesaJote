@@ -1,0 +1,52 @@
+.text {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.text:blank {
+  display: none;
+}
+
+.level1 {
+  height: 25px;
+  width: 25px;
+  background-color: rgb(255, 255, 0);
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.level2 {
+  height: 25px;
+  width: 25px;
+  background-color: rgb(191, 255, 0);
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.level3 {
+  height: 25px;
+  width: 25px;
+  background-color: rgb(128, 255, 0);
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.level4 {
+  height: 25px;
+  width: 25px;
+  background-color: rgb(64, 255, 0);
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.level5 {
+  height: 25px;
+  width: 25px;
+  background-color: rgb(0, 255, 34);
+  border-radius: 50%;
+  display: inline-block;
+}

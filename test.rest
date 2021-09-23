@@ -1,0 +1,60 @@
+DELETE  http://localhost:3001/api/properties/5f2bc7fc155
+
+###
+
+GET http://localhost:3003/api/properties
+
+###
+
+GET http://localhost:3001/api/properties/2
+
+###
+
+GET http://localhost:3001/info
+
+###
+
+GET http://localhost:3001/
+
+###
+
+POST http://localhost:3003/api/users
+content-type: application/json
+
+{
+    "username": "alumezi",
+    "name": "Arbnor Lumezi",
+    "password": "username"
+}
+
+###
+POST http://localhost:3003/api/login
+content-type: application/json
+
+{
+    "username": "alumezi",
+    "password": "username"
+}
+###
+GET http://localhost:3003/api/users
+content-type: application/json
+
+{
+    "username": "alumezi",
+    "password": "username"
+}
+
+###
+
+GET http://localhost:3003/api/filters/
+content-type: application/json
+###
+
+
+POST http://localhost:3003/api/properties/seed
+content-type: application/json
+###
+
+POST http://localhost:3003/api/filters/seed
+content-type: application/json
+###

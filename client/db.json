@@ -1,0 +1,136 @@
+{
+    "filters": {
+        "byLocation": [
+            {
+                "id": "all",
+                "name": "Të gjitha"
+            },
+            {
+                "id": "001",
+                "name": "Aktash"
+            },
+            {
+                "id": "002",
+                "name": "Ulpiane"
+            },
+            {
+                "id": "003",
+                "name": "Dardani"
+            },
+            {
+                "id": "004",
+                "name": "Rruga B"
+            },
+            {
+                "id": "005",
+                "name": "Mati 1"
+            },
+            {
+                "id": "006",
+                "name": "Lagjia e spitalit"
+            }
+        ],
+        "byNumberOfRooms": [
+            {
+                "id": "all",
+                "name": "Të gjitha"
+            },
+            {
+                "id": "1",
+                "name": "1"
+            },
+            {
+                "id": "2",
+                "name": "2"
+            },
+            {
+                "id": "3",
+                "name": "3"
+            },
+            {
+                "id": "4",
+                "name": "4"
+            }
+        ],
+        "byParkingTypes": [
+            {
+                "id": "all",
+                "name": "Të gjitha"
+            },
+            {
+                "id": "001",
+                "name": "Ska parking"
+            },
+            {
+                "id": "002",
+                "name": "Parking Komunal"
+            },
+            {
+                "id": "003",
+                "name": "Garazhe"
+            },
+            {
+                "id": "004",
+                "name": "Parking Banesor"
+            }
+        ]
+    },
+    "properties": [
+        {
+            "id": "wimofci2389rdjwef2839jd28",
+            "address": {
+                "road": "Rr. Sali Ceku",
+                "number": "52"
+            },
+            "neighborhood": "Ulpiane",
+            "numberOfRooms": 2,
+            "features": {
+                "terrace": true,
+                "kitchen": true
+            },
+            "size": {
+                "number": 23,
+                "unit": "m2"
+            },
+            "levelOfquietness": 1,
+            "amenities": {
+                "wifi": true,
+                "tv": true,
+                "washingMachine": true,
+                "fridge": "true",
+                "cableProvider": "Ipko"
+            },
+            "pictureUrls": [
+                "https://firebasestorage.googleapis.com/v0/b/banesajote.appspot.com/o/photo-1522708323590-d24dbb6b0267.jpeg?alt=media&token=ecb27e9e-873e-4e58-ac82-b8371a4ad302"
+            ]
+        },
+        {
+            "id": "wimofci2389rdjwef2839jd28",
+            "address": {
+                "road": "Rr. Sali Ceku",
+                "number": "52"
+            },
+            "neighborhood": "Ulpiane",
+            "numberOfRooms": 2,
+            "features": {
+                "terrace": true,
+                "kitchen": true
+            },
+            "size": {
+                "number": 23,
+                "unit": "m2"
+            },
+            "levelOfquietness": 1,
+            "amenities": {
+                "wifi": true,
+                "tv": true,
+                "washingMachine": true,
+                "fridge": "true",
+                "cableProvider": "Ipko"
+            },
+            "pictureUrls": [
+                "https://firebasestorage.googleapis.com/v0/b/banesajote.appspot.com/o/photo-1522708323590-d24dbb6b0267.jpeg?alt=media&token=ecb27e9e-873e-4e58-ac82-b8371a4ad302"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,129 @@
+/*
+__________Body__________
+*/
+
+.listbox__label {
+  @apply block text-sm;
+}
+
+.listbox__body {
+  @apply mt-1 relative;
+}
+
+/*
+¯¯¯¯¯¯¯¯¯¯Body¯¯¯¯¯¯¯¯¯¯
+*/
+
+/*
+__________Button__________
+*/
+
+.listbox__button {
+  @apply relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-2 pr-10 py-1;
+  @apply text-left sm:text-sm cursor-pointer focus:outline-none focus:ring-1 focus:ring-banesa-green focus:border-banesa-green;
+}
+
+.listbox__button__container {
+  @apply flex items-center;
+}
+
+.listbox__button__container__name {
+  @apply ml-3 block truncate;
+}
+
+/*
+¯¯¯¯¯¯¯¯¯¯Button¯¯¯¯¯¯¯¯¯¯
+*/
+
+/*
+__________Avatar__________
+*/
+
+.listbox__icon__container {
+  @apply ml-3 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none;
+}
+
+.listbox__icon__container__icon {
+  @apply h-5 w-5 text-gray-400;
+}
+
+/*
+¯¯¯¯¯¯¯¯¯¯Avatar¯¯¯¯¯¯¯¯¯¯
+*/
+
+/*
+__________Transition__________
+*/
+
+.listbox__transition--leave {
+  @apply transition ease-in duration-100;
+}
+
+.listbox__transition--leavefrom {
+  @apply opacity-100;
+}
+
+.listbox__transition--leaveto {
+  @apply opacity-0;
+}
+
+/*
+¯¯¯¯¯¯¯¯¯¯Transition¯¯¯¯¯¯¯¯¯¯
+*/
+
+/*
+__________Listbox Options__________
+*/
+
+.listbox__options {
+  @apply absolute z-10 mt-1 w-full bg-white shadow-lg max-h-56 rounded-md py-1;
+  @apply text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm;
+}
+
+.listbox__option {
+  @apply cursor-pointer select-none relative py-2 pl-3 pr-9;
+}
+
+.listbox__option--active {
+  @apply text-white bg-banesa-green;
+}
+
+.listbox__option--inactive {
+  @apply text-gray-900;
+}
+
+.listbox__option__container {
+  @apply flex items-center;
+}
+
+.listbox__option__container__name {
+  @apply ml-3 block truncate;
+}
+
+.listbox__option__container__name--selected {
+  @apply font-semibold;
+}
+
+.listbox__option__container__name--unselected {
+  @apply font-normal;
+}
+
+.listbox__option__checkicon {
+  @apply absolute inset-y-0 right-0 flex items-center pr-4;
+}
+
+.listbox__option__checkicon--active {
+  @apply text-white;
+}
+
+.listbox__option__checkicon--inactive {
+  @apply text-banesa-green;
+}
+
+.listbox__option__checkicon__icon {
+  @apply h-5 w-5;
+}
+
+/*
+¯¯¯¯¯¯¯¯¯¯Listbox Options¯¯¯¯¯¯¯¯¯¯
+*/

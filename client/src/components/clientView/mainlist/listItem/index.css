@@ -1,0 +1,63 @@
+.list__item {
+  @apply flex relative bg-white  mr-2 mb-2 shadow-sm border border-gray-100 hover:bg-blue-50 cursor-pointer rounded-sm;
+}
+
+.lif__img__container {
+  @apply w-5/12;
+}
+
+.lif__img {
+  @apply h-full object-cover rounded-l-sm;
+}
+
+.lif__body {
+  @apply p-4 flex flex-col justify-between;
+}
+
+.lifb__info {
+  @apply flex flex-col;
+}
+
+.lifb__neighborhood {
+  @apply flex font-light;
+}
+
+.lifbn__icon__container {
+  @apply text-gray-400;
+}
+
+.lifbn__icon {
+  @apply h-5 w-5 ml-1;
+}
+
+.lifb__features {
+  @apply flex font-light text-gray-500;
+}
+
+.lifb__amenities {
+  @apply flex font-light text-gray-500;
+}
+
+.lifba__icon {
+  @apply h-5 w-5 mr-3;
+}
+
+.lif__footer {
+  @apply flex justify-between;
+}
+
+.liff__date {
+  @apply inline-flex text-sm font-extralight align-bottom items-end;
+}
+
+.liff__price {
+  @apply inline-flex text-lg font-light items-end;
+}
+
+.liff__price__color {
+  @apply text-banesa-green;
+}
+
+.liff__price__divider {
+  @apply text-gray-500;
+}

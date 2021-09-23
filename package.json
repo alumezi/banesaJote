@@ -1,0 +1,62 @@
+{
+    "name": "banesajote",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "engines": {
+        "node": "14.15.1",
+        "npm": "6.14.8"
+    },
+    "scripts": {
+        "build": "tsc",
+        "start": "cross-env NODE_ENV=production concurrently \"tsc -w\" \"nodemon dist/js/index.js\"",
+        "start:dev": "cross-env NODE_ENV=development nodemon index.js",
+        "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
+        "build:ui": "rm -rf build && cd ./client && npm run build --prod  && cp -r build ..",
+        "deploy": "git push heroku main",
+        "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push && npm run deploy",
+        "logs:prod": "heroku logs --tail",
+        "lint": "eslint ."
+    },
+    "author": "Arbnor Lumezi",
+    "license": "ISC",
+    "dependencies": {
+        "@types/cors": "^2.8.12",
+        "@types/express": "^4.17.13",
+        "@types/mongoose": "^5.11.97",
+        "@types/node": "^16.9.6",
+        "bcrypt": "^5.0.1",
+        "chalk": "^4.1.1",
+        "concurrently": "^6.2.1",
+        "cookie-parser": "^1.4.5",
+        "cookie-session": "^1.4.0",
+        "cors": "^2.8.5",
+        "cross-env": "^7.0.2",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "express-async-errors": "^3.1.1",
+        "express-session": "^1.17.2",
+        "jsonwebtoken": "^8.5.1",
+        "mongoose": "^5.9.21",
+        "mongoose-unique-validator": "^2.0.3",
+        "morgan": "^1.10.0",
+        "multer": "^1.4.3",
+        "nodemailer": "^6.6.2",
+        "passport": "^0.4.1",
+        "passport-facebook": "^3.0.0",
+        "passport-local": "^1.0.0",
+        "short-uuid": "^4.2.0",
+        "supertest": "^4.0.2",
+        "ts-node": "^10.2.1"
+    },
+    "devDependencies": {
+        "eslint": "^7.29.0",
+        "eslint-config-airbnb": "^18.2.0",
+        "eslint-config-prettier": "^6.11.0",
+        "eslint-plugin-import": "^2.22.0",
+        "eslint-plugin-jsx-a11y": "^6.3.1",
+        "eslint-plugin-react": "^7.20.6",
+        "nodemon": "^2.0.4",
+        "prettier": "2.0.5"
+    }
+}
