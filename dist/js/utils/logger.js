@@ -1,17 +1,15 @@
 "use strict";
-const { blue, red } = require('chalk');
+Object.defineProperty(exports, "__esModule", { value: true });
+const chalk_1 = require("chalk");
 const info = (...params) => {
-    // eslint-disable-next-line no-undef
     if (process.env.NODE_ENV !== 'test') {
-        // eslint-disable-next-line no-console
-        console.log(blue(...params));
+        console.log((0, chalk_1.blue)(...params));
     }
 };
 const error = (...params) => {
-    // eslint-disable-next-line no-console
-    console.error(red(...params));
+    console.error((0, chalk_1.red)(...params));
 };
-module.exports = {
+exports.default = {
     info,
     error,
 };

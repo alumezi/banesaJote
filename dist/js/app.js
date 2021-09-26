@@ -1,50 +1,54 @@
 "use strict";
-const express = require('express');
-const mongoose = require('mongoose');
-const passport = require('passport');
-require('express-async-errors');
-const path = require('path');
-const cors = require('cors');
-const cookieSession = require('cookie-session');
-const config = require('./utils/config');
-const logger = require('./utils/logger');
-const UserRouter = require('./controllers/users');
-const LoginRouter = require('./controllers/login');
-const PropertyRouter = require('./controllers/properties');
-const FilterRouter = require('./controllers/filters');
-const AuthRouter = require('./controllers/auth');
-const app = express();
-const middleware = require('./utils/middleware');
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const mongoose_1 = __importDefault(require("mongoose"));
+const passport_1 = __importDefault(require("passport"));
+const path_1 = __importDefault(require("path"));
+const cors_1 = __importDefault(require("cors"));
+const cookie_session_1 = __importDefault(require("cookie-session"));
+const config_1 = __importDefault(require("./utils/config"));
+const logger_1 = __importDefault(require("./utils/logger"));
+const users_1 = __importDefault(require("./controllers/users"));
+const login_1 = __importDefault(require("./controllers/login"));
+const properties_1 = __importDefault(require("./controllers/properties"));
+const filters_1 = __importDefault(require("./controllers/filters"));
+const auth_1 = __importDefault(require("./controllers/auth"));
+require("express-async-errors");
+const app = (0, express_1.default)();
+const middleware_1 = __importDefault(require("./utils/middleware"));
 require('./boot/auth')();
-logger.info('connecting to', config.DB_URL);
-mongoose.set('useFindAndModify', false);
-mongoose
-    .connect(config.DB_URL, {
+logger_1.default.info('connecting to', config_1.default.DB_URL);
+mongoose_1.default.set('useFindAndModify', false);
+mongoose_1.default
+    .connect(config_1.default.DB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
     .then(() => {
-    logger.info('connected to MongoDB');
+    logger_1.default.info('connected to MongoDB');
 })
     .catch((error) => {
-    logger.error('error connecting to MongoDB:', error.message);
+    logger_1.default.error('error connecting to MongoDB:', error.message);
 });
-app.use(express.json());
-app.use(cors());
-app.use(express.static(path.join(__dirname, 'build')));
-app.use(middleware.extractToken);
-app.use(middleware.morganLogger);
-app.use(cookieSession({
+app.use(express_1.default.json());
+app.use((0, cors_1.default)());
+app.use(express_1.default.static(path_1.default.join(__dirname, 'build')));
+app.use(middleware_1.default.extractToken);
+app.use(middleware_1.default.morganLogger);
+app.use((0, cookie_session_1.default)({
     maxAge: 30 * 24 * 60 * 60 * 1000,
     keys: [process.env.COOKIE_KEY],
 }));
-app.use(passport.initialize());
-app.use(passport.session());
-app.use('/', AuthRouter);
-app.use('/api/login', LoginRouter);
-app.use('/api/users', UserRouter);
-app.use('/api/properties', PropertyRouter);
-app.use('/api/filters', FilterRouter);
-app.use(middleware.unknownEndpoint);
-app.use(middleware.errorHandler);
-module.exports = app;
+app.use(passport_1.default.initialize());
+app.use(passport_1.default.session());
+app.use('/', auth_1.default);
+app.use('/api/login', login_1.default);
+app.use('/api/users', users_1.default);
+app.use('/api/properties', properties_1.default);
+app.use('/api/filters', filters_1.default);
+app.use(middleware_1.default.unknownEndpoint);
+app.use(middleware_1.default.errorHandler);
+exports.default = app;
