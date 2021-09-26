@@ -23,7 +23,9 @@ export function App() {
   const [properties, setProperties] = useState([]);
   const [isLoading, setisLoading] = useState(true);
   const history = useHistory();
-  useEffect(() => fetchData(), []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const fetchData = async () => {
     const userFromAPI = await getUser();
