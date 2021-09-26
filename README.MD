@@ -1,8 +1,6 @@
 ##Production
 https://banesajote.herokuapp.com/
 
-Please
-
 # Setup
 
 ## Available Scripts
