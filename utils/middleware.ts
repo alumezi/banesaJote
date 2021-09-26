@@ -1,5 +1,5 @@
-const morgan = require('morgan');
-const logger = require('./logger');
+import morgan from 'morgan';
+import logger from './logger';
 // app.use(morgan('tiny'));
 morgan.token('returnData', (request) => request.body);
 
@@ -48,7 +48,7 @@ const requireLogin = (request, response, next) => {
   return next();
 };
 
-module.exports = {
+export default {
   unknownEndpoint,
   errorHandler,
   morganLogger,

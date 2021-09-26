@@ -1,7 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import passport from 'passport';
-require('express-async-errors');
 import path from 'path';
 import cors from 'cors';
 import cookieSession from 'cookie-session';
@@ -12,6 +11,7 @@ import LoginRouter from './controllers/login';
 import PropertyRouter from './controllers/properties';
 import FilterRouter from './controllers/filters';
 import AuthRouter from './controllers/auth';
+import 'express-async-errors';
 
 const app = express();
 import middleware from './utils/middleware';

@@ -1,7 +1,9 @@
-const FilterRouter = require('express').Router();
+import Express from 'express';
 import short from 'short-uuid';
 import Filters from '../models/filters';
 import logger from '../utils/logger';
+
+const FilterRouter = Express.Router();
 
 FilterRouter.get('/', (request, response, next) => {
   Filters.find({})
@@ -116,4 +118,4 @@ FilterRouter.post('/seed', async (request, response) => {
   });
 });
 
-module.exports = FilterRouter;
+export default FilterRouter;

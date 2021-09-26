@@ -1,5 +1,7 @@
-const AuthRouter = require('express').Router();
-const passport = require('passport');
+import Express from 'express';
+import passport from 'passport';
+
+const AuthRouter = Express.Router();
 
 AuthRouter.get('/facebook-login', passport.authenticate('facebook'));
 
@@ -21,4 +23,4 @@ AuthRouter.get('/current_user', (req, res) => {
   res.json(req.user);
 });
 
-module.exports = AuthRouter;
+export default AuthRouter;

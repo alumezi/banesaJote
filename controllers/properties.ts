@@ -1,11 +1,11 @@
 const PropertyRouter = require('express').Router();
 // const jwt = require('jsonwebtoken');
 
-const multer = require('multer');
+import multer from 'multer';
 
 const upload = multer({ dest: 'uploads/' });
-const Property = require('../models/property');
-const { requireLogin } = require('../utils/middleware');
+import Property from '../models/property';
+// import { requireLogin } from '../utils/middleware';
 
 PropertyRouter.get('/info', (request, response) => {
   Property.countDocuments({}).then((count) => {

@@ -1,15 +1,12 @@
-const { blue, red } = require('chalk');
+import { blue, red } from 'chalk';
 
-const info = (...params) => {
-  // eslint-disable-next-line no-undef
+const info = (...params: any[]) => {
   if (process.env.NODE_ENV !== 'test') {
-    // eslint-disable-next-line no-console
     console.log(blue(...params));
   }
 };
 
-const error = (...params) => {
-  // eslint-disable-next-line no-console
+const error = (...params: any[]) => {
   console.error(red(...params));
 };
 

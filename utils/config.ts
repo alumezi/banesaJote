@@ -1,5 +1,5 @@
-/* eslint-disable no-undef */
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
 const { PORT } = process.env;
 let { DB_URL } = process.env;
