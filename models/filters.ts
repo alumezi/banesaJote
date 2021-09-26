@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-underscore-dangle */
-const mongoose = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
+import mongoose from 'mongoose';
+import uniqueValidator from 'mongoose-unique-validator';
 
 const filterSchema = new mongoose.Schema({
   name: { type: String, unique: true },
@@ -23,4 +23,4 @@ filtersSchema.set('toJSON', {
 
 filterSchema.plugin(uniqueValidator);
 
-module.exports = mongoose.model('Filters', filtersSchema);
+export default mongoose.model('Filters', filtersSchema);

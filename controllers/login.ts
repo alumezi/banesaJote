@@ -1,8 +1,10 @@
 /* eslint-disable no-underscore-dangle */
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
-const loginRouter = require('express').Router();
-const User = require('../models/user');
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
+import Express from 'express';
+import User from '../models/user';
+
+const loginRouter = Express.Router();
 
 loginRouter.post('/', async (request, response) => {
   const { body } = request;

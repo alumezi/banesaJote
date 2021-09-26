@@ -1,13 +1,13 @@
-const passport = require('passport');
-const Strategy = require('passport-facebook');
-const User = require('../models/user');
+import passport from 'passport';
+import { Strategy } from 'passport-facebook';
+import User from '../models/user';
 
 module.exports = () => {
   passport.use(
     new Strategy(
       {
-        clientID: process.env.FACEBOOK_CLIENT_ID,
-        clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+        clientID: process.env.FACEBOOK_CLIENT_ID as string,
+        clientSecret: process.env.FACEBOOK_CLIENT_SECRET as string,
         callbackURL: 'https://banesajote.herokuapp.com/auth/facebook/callback',
       },
       async (accessToken, refreshToken, profile, cb) => {
@@ -20,7 +20,6 @@ module.exports = () => {
           facebookID: profile.id,
           displayName: profile.displayName,
           emails: profile.emails,
-          user_link: profile.user_link,
           date: new Date(),
         }).save();
         return cb(null, user);

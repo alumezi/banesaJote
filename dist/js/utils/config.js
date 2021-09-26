@@ -1,14 +1,12 @@
+"use strict";
 /* eslint-disable no-undef */
 require('dotenv').config();
-
 const { PORT } = process.env;
 let { DB_URL } = process.env;
-
 if (process.env.NODE_ENV === 'test') {
-  DB_URL = process.env.TEST_MONGODB_URI;
+    DB_URL = process.env.TEST_MONGODB_URI;
 }
-
-export default {
-  DB_URL,
-  PORT,
+module.exports = {
+    DB_URL,
+    PORT
 };

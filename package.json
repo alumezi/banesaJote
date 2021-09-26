@@ -21,10 +21,6 @@
     "author": "Arbnor Lumezi",
     "license": "ISC",
     "dependencies": {
-        "@types/cors": "^2.8.12",
-        "@types/express": "^4.17.13",
-        "@types/mongoose": "^5.11.97",
-        "@types/node": "^16.10.1",
         "bcrypt": "^5.0.1",
         "chalk": "^4.1.1",
         "concurrently": "^6.2.1",
@@ -46,10 +42,19 @@
         "passport-facebook": "^3.0.0",
         "passport-local": "^1.0.0",
         "short-uuid": "^4.2.0",
-        "supertest": "^4.0.2",
-        "ts-node": "^10.2.1"
+        "supertest": "^4.0.2"
     },
     "devDependencies": {
+        "@types/bcrypt": "^5.0.0",
+        "@types/cookie-session": "^2.0.43",
+        "@types/cors": "^2.8.12",
+        "@types/express": "^4.17.13",
+        "@types/jsonwebtoken": "^8.5.5",
+        "@types/mongoose": "^5.11.97",
+        "@types/mongoose-unique-validator": "^1.0.5",
+        "@types/node": "^16.10.1",
+        "@types/passport": "^1.0.7",
+        "@types/passport-facebook": "^2.1.11",
         "eslint": "^7.29.0",
         "eslint-config-airbnb": "^18.2.0",
         "eslint-config-prettier": "^6.11.0",
@@ -57,6 +62,7 @@
         "eslint-plugin-jsx-a11y": "^6.3.1",
         "eslint-plugin-react": "^7.20.6",
         "nodemon": "^2.0.13",
-        "prettier": "2.0.5"
+        "prettier": "2.0.5",
+        "ts-node": "^10.2.1"
     }
 }

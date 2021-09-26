@@ -133,4 +133,4 @@ PropertyRouter.post('/seed', async (request, response) => {
   });
 });
 
-module.exports = PropertyRouter;
+export default PropertyRouter;

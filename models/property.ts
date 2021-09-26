@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
-const mongoose = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
+import mongoose from 'mongoose';
+import uniqueValidator from 'mongoose-unique-validator';
 
 const propertySchema = new mongoose.Schema({
   address: {
@@ -36,4 +36,4 @@ propertySchema.set('toJSON', {
 
 propertySchema.plugin(uniqueValidator);
 
-module.exports = mongoose.model('Property', propertySchema);
+export default mongoose.model('Property', propertySchema);

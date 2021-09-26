@@ -13,7 +13,7 @@ const error = (...params) => {
   console.error(red(...params));
 };
 
-module.exports = {
+export default {
   info,
   error,
 };

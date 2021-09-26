@@ -40,4 +40,4 @@ UserRouter.get('/:id', async (request, response) => {
   response.json(users);
 });
 
-module.exports = UserRouter;
+export default UserRouter;
