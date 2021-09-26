@@ -1,14 +1,13 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-underscore-dangle */
-import mongoose from 'mongoose';
+import { model, Schema } from 'mongoose';
 import uniqueValidator from 'mongoose-unique-validator';
+import { IFilters } from '../types';
 
-const filterSchema = new mongoose.Schema({
+const filterSchema: Schema = new Schema({
   name: { type: String, unique: true },
   id: { type: String, unique: true },
 });
 
-const filtersSchema = new mongoose.Schema({
+const filtersSchema: Schema = new Schema({
   name: { type: String, unique: true },
   filters: [filterSchema],
 });
@@ -23,4 +22,4 @@ filtersSchema.set('toJSON', {
 
 filterSchema.plugin(uniqueValidator);
 
-export default mongoose.model('Filters', filtersSchema);
+export default model<IFilters>('Filters', filtersSchema);

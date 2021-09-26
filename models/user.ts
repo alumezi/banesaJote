@@ -1,9 +1,8 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-param-reassign */
-import mongoose from 'mongoose';
+import { model, Schema } from 'mongoose';
 import uniqueValidator from 'mongoose-unique-validator';
+import { IUser } from '../types';
 
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
   facebookID: {
     type: String,
     unique: true,
@@ -25,7 +24,7 @@ const userSchema = new mongoose.Schema({
   },
   properties: [
     {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'Property',
     },
   ],
@@ -42,4 +41,4 @@ userSchema.set('toJSON', {
 
 userSchema.plugin(uniqueValidator);
 
-export default mongoose.model('User', userSchema);
+export default model<IUser>('User', userSchema);

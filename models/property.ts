@@ -1,8 +1,8 @@
-/* eslint-disable no-underscore-dangle */
-import mongoose from 'mongoose';
+import { model, Schema } from 'mongoose';
 import uniqueValidator from 'mongoose-unique-validator';
+import { IProperty } from '../types';
 
-const propertySchema = new mongoose.Schema({
+const propertySchema: Schema = new Schema({
   address: {
     road: String,
     number: Number,
@@ -25,15 +25,12 @@ const propertySchema = new mongoose.Schema({
 
 propertySchema.set('toJSON', {
   transform: (document, returnedObject) => {
-    // eslint-disable-next-line no-param-reassign
     returnedObject.id = returnedObject._id.toString();
-    // eslint-disable-next-line no-param-reassign
     delete returnedObject._id;
-    // eslint-disable-next-line no-param-reassign
     delete returnedObject.__v;
   },
 });
 
 propertySchema.plugin(uniqueValidator);
 
-export default mongoose.model('Property', propertySchema);
+export default model<IProperty>('Property', propertySchema);
