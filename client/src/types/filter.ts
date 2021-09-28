@@ -4,6 +4,6 @@ export interface IFilter {
 }
 
 export interface IFilters {
-  name: string;
+  name: 'byLocation' | 'byParkingTypes' | 'byNumberOfRooms';
   filters: IFilter[];
 }

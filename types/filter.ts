@@ -6,6 +6,6 @@ export interface IFilter extends Document {
 }
 
 export interface IFilters extends Document {
-  name: string;
+  name: 'byLocation' | 'byParkingTypes' | 'byNumberOfRooms';
   filters: IFilter[];
 }
