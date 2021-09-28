@@ -3,7 +3,14 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import moneyShot from '../../assets/moneyShot.JPG';
 
-export function RegisterComponent({ submit }) {
+type SubmitProp = (
+  fullname: string,
+  username: string,
+  password: string,
+  confirmPassword: string
+) => void;
+
+export function RegisterComponent({ submit }: { submit: SubmitProp }) {
   const [fullname, setFullname] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -57,7 +64,7 @@ export function RegisterComponent({ submit }) {
               />
             </div>
             <input type="hidden" name="remember" defaultValue="true" />
-            <div class="mt-3">
+            <div className="mt-3">
               <label htmlFor="username" className="text-sm">
                 Username
               </label>

@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 
-export const Thumb = ({ file }) => {
-  const [thumb, setThumb] = useState(undefined);
-  const [loading, setLoading] = useState(false);
+export const Thumb = ({ file }: { file: File }) => {
+  const [thumb, setThumb] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     let reader = new FileReader();
 
     reader.onloadend = () => {
-      setThumb(reader.result);
+      setThumb(reader.result as string);
       setLoading(false);
     };
     if (file) {

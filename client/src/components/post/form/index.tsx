@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import { useFormik } from 'formik';
 import { IFilter, IProperty } from '../../../types';
 import { Select } from '../../../lib/components/select';
@@ -89,6 +89,7 @@ export function PostFormComponent({
         amenities: values.amenities,
         features: values.features,
         price: values.price,
+        pictures: [],
       };
 
       const formData = new FormData();

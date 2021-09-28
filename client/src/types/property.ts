@@ -11,7 +11,7 @@ export interface IProperty {
   price: number;
   levelOfquietness?: number;
   amenities: string[];
-  pictureUrls?: string[];
+  pictures: string[];
   date?: Date;
   [key: string]: any;
 }

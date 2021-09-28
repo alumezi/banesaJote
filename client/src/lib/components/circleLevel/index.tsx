@@ -16,8 +16,14 @@ const Level = () => {
 };
 export default Level;
 
-export const CircleLevel = ({ label, amountOfDots = 5 }) => {
-  function renderDots(level) {
+export const CircleLevel = ({
+  label,
+  amountOfDots = 5,
+}: {
+  label: string;
+  amountOfDots: number;
+}) => {
+  function renderDots(level: number) {
     const allDots = [];
     for (let i = 0; i < level; i++) {
       allDots.push(<span className={`level${i + 1}`} key={i}></span>);

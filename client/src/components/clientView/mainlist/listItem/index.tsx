@@ -11,7 +11,7 @@ export const ListItem = ({ data }: { data: IProperty }) => {
       <div className="lif__img__container">
         {/* we need a carousel here */}
         <img
-          src={data?.pictureUrls as any}
+          src={data?.pictureUrls[0]}
           width="100%"
           height="100%"
           className="lif__img"
