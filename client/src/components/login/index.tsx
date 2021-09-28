@@ -6,12 +6,21 @@ import logo from '../../assets/logo.png';
 import moneyShot from '../../assets/moneyShot.JPG';
 import './index.css';
 
-export function LoginComponent({ submit }) {
+interface LoginValues {
+  username: string;
+  password: string;
+}
+
+export function LoginComponent({
+  submit,
+}: {
+  submit: (username: string, password: string) => void;
+}) {
   const fancyBorder = { borderRadius: '50%' };
   const [canSubmit, setCanSubmit] = useState(false);
 
-  const validate = (values) => {
-    const errors = {};
+  const validate = (values: LoginValues) => {
+    const errors: { username?: string; password?: string } = {};
     if (!values.username) {
       errors.username = 'I nevojshëm';
     }
@@ -133,7 +142,7 @@ export function LoginComponent({ submit }) {
               <button
                 type="submit"
                 disabled={!canSubmit}
-                cansubmit={canSubmit ? 'true' : 'false'}
+                data-cansubmit={canSubmit.toString()}
                 className="group relative w-full flex justify-center py-3 border border-transparent text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
               >
                 <span className="absolute left-0 inset-y-0 flex items-center pl-3">
