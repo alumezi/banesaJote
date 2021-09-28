@@ -1,6 +1,7 @@
 import { IProperty } from './property';
 
 export interface IUser {
+  id: string;
   facebookID: string;
   username: string;
   displayName: string;

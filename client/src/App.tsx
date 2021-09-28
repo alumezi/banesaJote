@@ -16,10 +16,10 @@ import { Switch, Route, useHistory } from 'react-router-dom';
 import { LoginComponent } from './components/login';
 import { RegisterComponent } from './components/register';
 import { PostComponent } from './components/post';
-import { IFilter, IProperty } from './types';
+import { IFilter, IProperty, IUser } from './types';
 
 export function App() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState<IUser | null>(null);
   const [filterData, setFilterData] = useState<Record<string, IFilter[]>>({});
   const [properties, setProperties] = useState<IProperty[]>([]);
   const [isLoading, setisLoading] = useState<boolean>(true);
@@ -74,7 +74,7 @@ export function App() {
 
   const logOut = async () => {
     await logout();
-    setUser({});
+    setUser(null);
     localStorage.removeItem('user');
   };
 
@@ -93,7 +93,7 @@ export function App() {
   return (
     <Switch>
       <Route path="/" exact>
-        <Nav loggedIn={Boolean(user.id)} logOut={logOut} />
+        <Nav loggedIn={Boolean(user!.id)} logOut={logOut} />
         <FilterBar data={filterData} />
         <MainBody properties={properties} />
       </Route>
@@ -101,7 +101,7 @@ export function App() {
         <LoginComponent submit={submitLogin} />
       </Route>
       <Route path="/post">
-        <Nav loggedIn={Boolean(user.id)} logOut={logOut} />
+        <Nav loggedIn={Boolean(user!.id)} logOut={logOut} />
         <PostComponent
           filterData={filterData}
           properties={properties}
