@@ -1,11 +1,9 @@
-import { Document } from 'mongoose';
-
-export interface IFilter extends Document {
+export interface IFilter {
   id: string;
   name: string;
 }
 
-export interface IFilters extends Document {
+export interface IFilters {
   name: string;
   filters: IFilter[];
 }

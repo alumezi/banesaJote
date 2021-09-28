@@ -1,6 +1,4 @@
-import { Document } from 'mongoose';
-
-export interface IProperty extends Document {
+export interface IProperty {
   address: {
     road: string;
     number: number;

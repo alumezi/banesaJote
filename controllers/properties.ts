@@ -1,4 +1,5 @@
-const PropertyRouter = require('express').Router();
+import Express from 'express';
+const PropertyRouter = Express.Router();
 // const jwt = require('jsonwebtoken');
 
 import multer from 'multer';

@@ -1,6 +1,8 @@
-const UserRouter = require('express').Router();
+import Express from 'express';
 import bcrypt from 'bcrypt';
 import User from '../models/user';
+
+const UserRouter = Express.Router();
 
 UserRouter.post('/', async (request, response, next) => {
   const { body } = request;

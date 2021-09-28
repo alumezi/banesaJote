@@ -40,7 +40,7 @@ export const signup = async (
   return response.data;
 };
 
-export const getFilters = async (): Promise<IFilters> => {
+export const getFilters = async (): Promise<IFilters[]> => {
   const response = await axios.get(baseUrl + '/filters');
   return response.data;
 };

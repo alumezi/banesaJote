@@ -1,7 +1,6 @@
-import { Document } from 'mongoose';
 import { IProperty } from './property';
 
-export interface IUser extends Document {
+export interface IUser {
   facebookID: string;
   username: string;
   displayName: string;

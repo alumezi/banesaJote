@@ -16,13 +16,15 @@ import { Switch, Route, useHistory } from 'react-router-dom';
 import { LoginComponent } from './components/login';
 import { RegisterComponent } from './components/register';
 import { PostComponent } from './components/post';
+import { IFilter, IProperty } from './types';
 
 export function App() {
-  const [user, setUser] = useState();
-  const [filterData, setFilterData] = useState({});
-  const [properties, setProperties] = useState([]);
-  const [isLoading, setisLoading] = useState(true);
+  const [user, setUser] = useState({});
+  const [filterData, setFilterData] = useState<Record<string, IFilter[]>>({});
+  const [properties, setProperties] = useState<IProperty[]>([]);
+  const [isLoading, setisLoading] = useState<boolean>(true);
   const history = useHistory();
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -32,7 +34,7 @@ export function App() {
     const allFilterData = await getFilters();
     setUser(userFromAPI);
 
-    const filterDataReady = {};
+    const filterDataReady: Record<string, IFilter[]> = {};
     allFilterData.forEach((element) => {
       filterDataReady[element.name] = element.filters;
     });
@@ -44,14 +46,19 @@ export function App() {
     setisLoading(false);
   };
 
-  const submitLogin = async (username, password) => {
+  const submitLogin = async (username: string, password: string) => {
     const user = await login(username, password);
     setUser(user);
     localStorage.setItem('user', JSON.stringify(user));
     history.push('/main');
   };
 
-  const submitSignUp = async (name, username, password, confirmpassword) => {
+  const submitSignUp = async (
+    name: string,
+    username: string,
+    password: string,
+    confirmpassword: string
+  ) => {
     if (password !== confirmpassword) {
       return alert('Fjalekalimi nuk eshte i njejte');
     }
