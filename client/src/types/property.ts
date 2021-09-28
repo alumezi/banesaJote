@@ -1,4 +1,5 @@
 export interface IProperty {
+  id: string;
   address: {
     road: string;
     number: number;

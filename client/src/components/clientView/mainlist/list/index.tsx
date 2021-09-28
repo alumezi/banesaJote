@@ -1,7 +1,8 @@
+import { IProperty } from '../../../../types';
 import { ListItem } from '../listItem';
 import './index.css';
 
-export const List = ({ properties }) => {
+export const List = ({ properties }: { properties: IProperty[] }) => {
   return (
     <div className="list__properties">
       {properties.map((element) => (
