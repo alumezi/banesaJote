@@ -5,7 +5,19 @@ import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
 import { classNames } from '../../util/class';
 import './index.css';
 
-export function Select({ items, label, value, onChange, onBlur }) {
+export function Select({
+  items,
+  label,
+  value,
+  onChange,
+  onBlur,
+}: {
+  items: { id: string; name: string }[];
+  label?: string;
+  value?: string;
+  onChange?: any;
+  onBlur?: () => {};
+}) {
   return (
     <Listbox value={value} onChange={onChange}>
       {({ open }) => (

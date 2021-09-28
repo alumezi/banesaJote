@@ -4,11 +4,15 @@ import { Input } from '../../../lib/components/input';
 import { Block } from '../../../lib/layout/block';
 import { IFilter } from '../../../types';
 
-export const FilterBar = ({ data }: Record<string, IFilter[]>) => {
+export interface IFilterBar {
+  [key: string]: IFilter[];
+}
+
+export const FilterBar = ({ data }: { data: IFilterBar }) => {
   return (
     <div className="flex space-x-4 mb-3 px-4">
       <Block classes="w-2/12">
-        <Select items={data.byLocation} placeholder="Lokacioni" />
+        <Select items={data.byLocation} />
       </Block>
       <Block classes="w-2/12">
         <Input placeholder="Nga" prepend="€" />

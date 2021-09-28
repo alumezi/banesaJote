@@ -1,10 +1,15 @@
 import { PostFormComponent } from './form';
 import { List } from '../clientView/mainlist/list';
+import { IFilter, IProperty } from '../../types';
 
 export function PostComponent({
   properties,
   filterData,
   handleCreatePropertySubmit,
+}: {
+  properties: IProperty[];
+  filterData: Record<string, IFilter[]>;
+  handleCreatePropertySubmit: (value: IProperty) => void;
 }) {
   return (
     <div className="md:grid md:grid-cols-2 md:gap-3 h-full w-full top-auto">

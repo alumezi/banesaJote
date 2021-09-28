@@ -1,22 +1,14 @@
-/*
-  This requires Tailwind CSS v2.0+ 
-  
-  This requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ]
-  }
-  ```
-*/
-import "./index.css";
+import './index.css';
 
-export function Input({ label, placeholder, prepend }) {
+export function Input({
+  label,
+  placeholder,
+  prepend,
+}: {
+  label?: string;
+  placeholder?: string;
+  prepend?: string;
+}) {
   return (
     <div>
       {label ? (
@@ -24,7 +16,7 @@ export function Input({ label, placeholder, prepend }) {
           {label}
         </label>
       ) : (
-        ""
+        ''
       )}
       <div className="mt-1 relative rounded-md shadow-sm">
         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
