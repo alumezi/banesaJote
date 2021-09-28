@@ -1,5 +1,5 @@
 export interface IProperty {
-  id: string;
+  id?: string;
   address: {
     road: string;
     number: number;
@@ -9,8 +9,9 @@ export interface IProperty {
   features: string[];
   size: number;
   price: number;
-  levelOfquietness: number;
+  levelOfquietness?: number;
   amenities: string[];
-  pictureUrls: string[];
-  date: Date;
+  pictureUrls?: string[];
+  date?: Date;
+  [key: string]: any;
 }

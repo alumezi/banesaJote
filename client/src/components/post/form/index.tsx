@@ -1,19 +1,39 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useFormik } from 'formik';
+import { IFilter, IProperty } from '../../../types';
 import { Select } from '../../../lib/components/select';
 import { parseFeaturesInCurrentLanguage } from '../../../util/parsers/albanian';
 import { Icon } from '../../../lib/components/icons';
 import { FileUploader } from '../../../lib/components/file-uploader';
 import { LockClosedIcon } from '@heroicons/react/solid';
 
+interface FormValues {
+  road: string;
+  number: number;
+  neighborhood: string;
+  numberOfRooms: number;
+  size: number;
+  price: number;
+  pictures: File[];
+  amenities: string[];
+  features: string[];
+}
+
+interface ErrorValues {
+  [key: string]: string;
+}
+
 export function PostFormComponent({
   handleCreatePropertySubmit,
   filterData = {},
+}: {
+  handleCreatePropertySubmit: (value: IProperty) => Promise<void>;
+  filterData: Record<string, IFilter[]>;
 }) {
   const [canSubmit, setCanSubmit] = useState(false);
 
-  const validate = (values) => {
-    const errors = {};
+  const validate = (values: FormValues) => {
+    const errors: ErrorValues = {};
     if (!values.road) {
       errors.road = 'I nevojshëm';
     }
@@ -45,21 +65,23 @@ export function PostFormComponent({
     return errors;
   };
 
+  const initialValues: FormValues = {
+    road: '',
+    number: 0,
+    neighborhood: '',
+    numberOfRooms: 0,
+    size: 0,
+    price: 0,
+    amenities: [],
+    features: [],
+    pictures: [],
+  };
+
   const formik = useFormik({
-    initialValues: {
-      road: '',
-      number: '',
-      neighborhood: '',
-      numberOfRooms: '',
-      size: '',
-      price: '',
-      amenities: [],
-      features: [],
-      pictures: [],
-    },
+    initialValues,
     validate,
     onSubmit: async (values, { resetForm, setSubmitting }) => {
-      let objectTOSave = {
+      let objectTOSave: IProperty = {
         address: { road: values.road, number: values.number },
         neighborhood: values.neighborhood,
         numberOfRooms: values.numberOfRooms,
@@ -77,7 +99,7 @@ export function PostFormComponent({
       Array.from(values.pictures).forEach((item) => {
         formData.append('pictures', item);
       });
-      await handleCreatePropertySubmit(values);
+      await handleCreatePropertySubmit(objectTOSave);
       setSubmitting(false);
       resetForm();
     },
@@ -140,7 +162,7 @@ export function PostFormComponent({
               label="Lokacioni"
               value={formik.values.neighborhood}
               onBlur={formik.handleBlur}
-              onChange={(value) =>
+              onChange={(value: { name: string; id: string }) =>
                 formik.setFieldValue('neighborhood', value.name)
               }
             />
@@ -184,7 +206,7 @@ export function PostFormComponent({
               label="Numëri i dhomave të gjumit"
               value={formik.values.numberOfRooms}
               onBlur={formik.handleBlur}
-              onChange={(value) =>
+              onChange={(value: { name: string; id: string }) =>
                 formik.setFieldValue('numberOfRooms', value.name)
               }
             />
@@ -312,7 +334,7 @@ export function PostFormComponent({
       <div className="sm:px-6 sm:pb-2">
         <button
           type="submit"
-          cansubmit={canSubmit ? 'true' : 'false'}
+          data-cansubmit={canSubmit ? 'true' : 'false'}
           className="group relative w-full flex justify-center items-center py-5 border border-transparent text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
         >
           <span className="absolute left-0 inset-y-0 flex items-center pl-3">

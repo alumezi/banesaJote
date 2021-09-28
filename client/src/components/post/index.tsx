@@ -9,7 +9,7 @@ export function PostComponent({
 }: {
   properties: IProperty[];
   filterData: Record<string, IFilter[]>;
-  handleCreatePropertySubmit: (value: IProperty) => void;
+  handleCreatePropertySubmit: (value: IProperty) => Promise<void>;
 }) {
   return (
     <div className="md:grid md:grid-cols-2 md:gap-3 h-full w-full top-auto">

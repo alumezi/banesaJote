@@ -1,3 +1,4 @@
+import { ChangeEventHandler, EventHandler } from 'react';
 import { Thumb } from '../thumbnail';
 
 export const FileUploader = ({
@@ -7,6 +8,13 @@ export const FileUploader = ({
   uploaderID,
   uploaderName,
   multiple = false,
+}: {
+  handleChange: ChangeEventHandler<HTMLInputElement>;
+  handleBlur: EventHandler<any>;
+  files: File[];
+  uploaderID: string;
+  uploaderName: string;
+  multiple: boolean;
 }) => {
   return (
     <>

@@ -14,9 +14,9 @@ export function Select({
 }: {
   items: { id: string; name: string }[];
   label?: string;
-  value?: string;
+  value?: string | number;
   onChange?: any;
-  onBlur?: () => {};
+  onBlur?: any;
 }) {
   return (
     <Listbox value={value} onChange={onChange}>
