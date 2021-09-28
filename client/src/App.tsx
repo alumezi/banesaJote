@@ -67,7 +67,7 @@ export function App() {
     history.push('/login');
   };
 
-  const handleCreatePropertySubmit = async (values) => {
+  const handleCreatePropertySubmit = async (values: IProperty) => {
     const freshProperty = await createProperty(values);
     setProperties([freshProperty, ...properties]);
   };

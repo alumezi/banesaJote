@@ -1,11 +1,18 @@
-/* This example requires Tailwind CSS v2.0+ */
-import { Popover } from '@headlessui/react';
 import { Link } from 'react-router-dom';
-import logo from '../../../assets/logo.png';
 import './index.css';
+import logo from '../../../assets/logo.png';
+import { IUser } from '../../../types';
 import { UserAvatar } from './user';
 
-export default function Navigation({ loggedIn, logIn, logOut }) {
+export default function Navigation({
+  loggedIn,
+  logIn,
+  logOut,
+}: {
+  loggedIn: boolean;
+  logIn?: (username: string, password: string) => IUser;
+  logOut: () => Promise<void>;
+}) {
   return (
     <div className="flex justify-between items-center py-4 md:justify-start md:space-x-10">
       <div className="flex justify-start lg:w-0 lg:flex-1">

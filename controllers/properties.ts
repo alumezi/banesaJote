@@ -64,10 +64,6 @@ PropertyRouter.post(
   upload.array('photos', 6),
   (request, response, next) => {
     const resource = request.body;
-    console.log(
-      '🚀 ~ file: properties.js ~ line 59 ~ PropertyRouter.post ~ resource',
-      resource
-    );
 
     if (!resource.address) {
       return response.status(400).json({

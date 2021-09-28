@@ -19,10 +19,7 @@ export const login = async (
   return response.data;
 };
 
-export const logout = async (
-  username: string,
-  password: string
-): Promise<void> => {
+export const logout = async (): Promise<void> => {
   const response = await axios.get('/logout');
   return response.data;
 };
