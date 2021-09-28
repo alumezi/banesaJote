@@ -16,7 +16,7 @@ Validation
   color: red;
 }
 
-[cansubmit='true'] .can-submit-icon {
+[data-cansubmit='true'] .can-submit-icon {
   display: none;
 }
 
