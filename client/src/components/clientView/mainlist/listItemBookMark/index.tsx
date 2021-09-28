@@ -1,5 +1,5 @@
 import './index.css';
 
-export const ListItemBookMark = ({ stuff }) => {
-  return <div className="fancy-cut">{23}</div>;
+export const ListItemBookMark = ({ content }: { content: string | number }) => {
+  return <div className="fancy-cut">{content}</div>;
 };

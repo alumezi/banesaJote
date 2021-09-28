@@ -1,14 +1,18 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from 'react';
+import { Fragment, MouseEventHandler } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { UserIcon } from '@heroicons/react/solid';
 import { Link } from 'react-router-dom';
 
-function classNames(...classes) {
+function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
 
-export function UserAvatar({ logOut }) {
+export function UserAvatar({
+  logOut,
+}: {
+  logOut: MouseEventHandler<HTMLButtonElement>;
+}) {
   return (
     <Menu as="div" className="relative inline-block text-left z-50 ml-3">
       {({ open }) => (

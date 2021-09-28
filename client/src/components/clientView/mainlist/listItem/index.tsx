@@ -3,14 +3,15 @@ import { LocationIcon, Icon } from '../../../../lib/components/icons';
 import { parseFeaturesInCurrentLanguage } from '../../../../util/parsers/albanian';
 import { CircleLevel } from '../../../../lib/components/circleLevel';
 import { ListItemBookMark } from '../listItemBookMark';
+import { IProperty } from '../../../../types';
 
-export const ListItem = ({ data }) => {
+export const ListItem = ({ data }: { data: IProperty }) => {
   return (
     <div className="list__item">
       <div className="lif__img__container">
         {/* we need a carousel here */}
         <img
-          src={data?.pictureUrls}
+          src={data?.pictureUrls[0]}
           width="100%"
           height="100%"
           className="lif__img"
@@ -46,7 +47,7 @@ export const ListItem = ({ data }) => {
           </div>
         </div>
       </div>
-      <ListItemBookMark stuff={23} />
+      <ListItemBookMark content={23} />
     </div>
   );
 };

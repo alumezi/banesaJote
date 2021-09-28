@@ -1,4 +1,10 @@
-export const Icon = ({ iconName, className }) => {
+export const Icon = ({
+  iconName,
+  className,
+}: {
+  iconName: string;
+  className: string;
+}) => {
   switch (iconName) {
     case 'wifi':
       return <WifiIcon className={className} />;
@@ -9,11 +15,11 @@ export const Icon = ({ iconName, className }) => {
     case 'fridge':
       return <FridgeIcon className={className} />;
     default:
-      <></>;
+      return null;
   }
 };
 
-export const LocationIcon = ({ className }) => {
+export const LocationIcon = ({ className }: { className: string }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +44,7 @@ export const LocationIcon = ({ className }) => {
   );
 };
 
-export const WifiIcon = ({ className }) => {
+export const WifiIcon = ({ className }: { className: string }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -57,7 +63,7 @@ export const WifiIcon = ({ className }) => {
   );
 };
 
-export const WashingMachine = ({ className }) => {
+export const WashingMachine = ({ className }: { className: string }) => {
   return (
     <svg
       className={className}
@@ -96,7 +102,7 @@ export const WashingMachine = ({ className }) => {
   );
 };
 
-export const TvIcon = ({ className }) => {
+export const TvIcon = ({ className }: { className: string }) => {
   return (
     <svg
       className={className}
@@ -136,7 +142,7 @@ export const TvIcon = ({ className }) => {
   );
 };
 
-export const FridgeIcon = ({ className }) => {
+export const FridgeIcon = ({ className }: { className: string }) => {
   return (
     <svg
       className={className}

@@ -12,4 +12,5 @@ export interface IProperty {
   levelOfquietness: number;
   amenities: string[];
   pictureUrls: string[];
+  date: Date;
 }

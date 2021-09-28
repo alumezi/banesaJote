@@ -1,8 +1,6 @@
-const currentLanguage = 'Albanian'; //todo: derive the current language of app from state
+const currentLanguage: 'Albanian' | 'English' | 'Italian' = 'Albanian'; //todo: derive the current language of app from state
 
-export const parseFeaturesInCurrentLanguage = (
-  feature: 'Albanian' | 'English' | 'Italian'
-) => {
+export const parseFeaturesInCurrentLanguage = (feature: string) => {
   switch (currentLanguage) {
     case 'Albanian':
       return parseFeaturesInAlbanian(feature);
