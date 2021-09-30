@@ -1,9 +1,10 @@
 import morgan from 'morgan';
 import logger from './logger';
+import { Request, Response, NextFunction } from 'express';
 // app.use(morgan('tiny'));
-morgan.token('returnData', (request) => request.body);
+morgan.token('returnData', (request: Request) => request.body);
 
-const morganLogger = morgan((tokens, req, res) =>
+const morganLogger = morgan((tokens, req: Request, res: Response) =>
   [
     tokens.method(req, res),
     tokens.url(req, res),
@@ -12,15 +13,20 @@ const morganLogger = morgan((tokens, req, res) =>
     '-',
     tokens['response-time'](req, res),
     'ms',
-    JSON.stringify(tokens.returnData(req)),
+    JSON.stringify(tokens.returnData(req, res)),
   ].join(' ')
 );
 
-const unknownEndpoint = (request, response) => {
+const unknownEndpoint = (request: Request, response: Response) => {
   response.redirect('/');
 };
 
-const errorHandler = (error, request, response, next) => {
+const errorHandler = (
+  error: Error,
+  request: Request,
+  response: Response,
+  next: NextFunction
+) => {
   if (error.name === 'CastError') {
     logger.info(error);
     return response.status(400).send({ error: 'malformatted id' });
@@ -32,7 +38,11 @@ const errorHandler = (error, request, response, next) => {
   return next(error);
 };
 
-const extractToken = (request, response, next) => {
+interface Req extends Request {
+  token: string;
+}
+
+const extractToken = (request: Req, response: Response, next: NextFunction) => {
   const authorization = request.get('authorization');
   if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
     request.token = authorization.substring(7);
@@ -41,7 +51,11 @@ const extractToken = (request, response, next) => {
   next();
 };
 
-const requireLogin = (request, response, next) => {
+const requireLogin = (
+  request: Request,
+  response: Response,
+  next: NextFunction
+) => {
   if (!request.user) {
     return response.status(401).send({ error: 'You must log in!' });
   }

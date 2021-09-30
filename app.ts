@@ -21,7 +21,7 @@ logger.info('connecting to', config.DB_URL);
 
 mongoose.set('useFindAndModify', false);
 mongoose
-  .connect(config.DB_URL, {
+  .connect(config.DB_URL as string, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -40,7 +40,7 @@ app.use(middleware.morganLogger);
 app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: [process.env.COOKIE_KEY],
+    keys: [process.env.COOKIE_KEY as string],
   })
 );
 app.use(passport.initialize());

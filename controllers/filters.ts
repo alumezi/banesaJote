@@ -1,6 +1,7 @@
 import Express from 'express';
 import short from 'short-uuid';
 import Filters from '../models/filters';
+import { IFilters } from '../types';
 import logger from '../utils/logger';
 
 const FilterRouter = Express.Router();
@@ -19,21 +20,27 @@ FilterRouter.post('/seed', async (request, response) => {
       name: 'byLocation',
       filters: [
         {
+          id: '',
           name: 'Aktash',
         },
         {
+          id: '',
           name: 'Ulpiane',
         },
         {
+          id: '',
           name: 'Dardani',
         },
         {
+          id: '',
           name: 'Rruga B',
         },
         {
+          id: '',
           name: 'Mati 1',
         },
         {
+          id: '',
           name: 'Lagjia e spitalit',
         },
       ],
@@ -100,13 +107,13 @@ FilterRouter.post('/seed', async (request, response) => {
 
   filters.forEach((item) => {
     item.filters.forEach((filter) => {
-      filter.id = short.generate(); // eslint-disable-line no-param-reassign
+      filter.id = short.generate();
     });
   });
 
-  await Filters.collection.deleteMany({});
+  await Filters.deleteMany({});
 
-  Filters.collection.insertMany(filters, (err) => {
+  Filters.insertMany(filters, (err) => {
     if (err) {
       logger.info(err);
       logger.info(err.message);

@@ -121,7 +121,7 @@ PropertyRouter.post('/seed', async (request, response) => {
   ];
 
   await Property.deleteMany({});
-  Property.collection.insertMany(properties, (err) => {
+  Property.insertMany(properties, (err) => {
     if (err) {
       response.status(400).end();
     } else {
