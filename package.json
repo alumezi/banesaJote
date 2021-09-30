@@ -10,7 +10,7 @@
     "scripts": {
         "build": "tsc",
         "start": "cross-env NODE_ENV=production concurrently \"tsc -w\" \"nodemon dist/js/index.js\"",
-        "start:dev": "cross-env NODE_ENV=development nodemon index.js",
+        "start:dev": "cross-env NODE_ENV=development nodemon dist/js/index.js",
         "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
         "build:ui": "rm -rf build && cd ./client && npm run build --prod  && cp -r build ..",
         "deploy": "git push heroku main",
