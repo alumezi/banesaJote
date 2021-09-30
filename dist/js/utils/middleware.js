@@ -15,7 +15,7 @@ const morganLogger = (0, morgan_1.default)((tokens, req, res) => [
     '-',
     tokens['response-time'](req, res),
     'ms',
-    JSON.stringify(tokens.returnData(req)),
+    JSON.stringify(tokens.returnData(req, res)),
 ].join(' '));
 const unknownEndpoint = (request, response) => {
     response.redirect('/');

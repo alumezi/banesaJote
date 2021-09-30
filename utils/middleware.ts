@@ -38,11 +38,11 @@ const errorHandler = (
   return next(error);
 };
 
-interface Req extends Request {
-  token: string;
-}
-
-const extractToken = (request: Req, response: Response, next: NextFunction) => {
+const extractToken = (
+  request: Request,
+  response: Response,
+  next: NextFunction
+) => {
   const authorization = request.get('authorization');
   if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
     request.token = authorization.substring(7);
