@@ -11,11 +11,12 @@ import LoginRouter from './controllers/login';
 import PropertyRouter from './controllers/properties';
 import FilterRouter from './controllers/filters';
 import AuthRouter from './controllers/auth';
+import boot from './boot/auth';
 import 'express-async-errors';
 
 const app = express();
 import middleware from './utils/middleware';
-require('./boot/auth')();
+boot();
 
 logger.info('connecting to', config.DB_URL);
 

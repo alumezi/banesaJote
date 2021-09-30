@@ -2,7 +2,7 @@ import passport from 'passport';
 import { Strategy } from 'passport-facebook';
 import User from '../models/user';
 
-module.exports = () => {
+export default () => {
   passport.use(
     new Strategy(
       {

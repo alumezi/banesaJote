@@ -16,10 +16,11 @@ const login_1 = __importDefault(require("./controllers/login"));
 const properties_1 = __importDefault(require("./controllers/properties"));
 const filters_1 = __importDefault(require("./controllers/filters"));
 const auth_1 = __importDefault(require("./controllers/auth"));
+const auth_2 = __importDefault(require("./boot/auth"));
 require("express-async-errors");
 const app = (0, express_1.default)();
 const middleware_1 = __importDefault(require("./utils/middleware"));
-require('./boot/auth')();
+(0, auth_2.default)();
 logger_1.default.info('connecting to', config_1.default.DB_URL);
 mongoose_1.default.set('useFindAndModify', false);
 mongoose_1.default

@@ -5,6 +5,11 @@
     ],
     "jsRules": {},
     "rules": {
+        "no-console": [
+            false,
+            "log",
+            "error"
+        ],
         "trailing-comma": [
             false
         ]
