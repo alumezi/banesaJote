@@ -11,7 +11,7 @@
         "build": "tsc",
         "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
         "prestart": "npm run build",
-        "web": "npm start",
+        "web": "node dist/js/index.js",
         "start": "NODE_ENV=production node dist/js/index.js",
         "start:dev": "cross-env NODE_ENV=development concurrently \"tsc -w\" \"nodemon dist/js/index.js\"",
         "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
