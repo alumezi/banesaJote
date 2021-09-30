@@ -1,6 +1,11 @@
-import { model, Schema } from 'mongoose';
-import uniqueValidator from 'mongoose-unique-validator';
-const userSchema = new Schema({
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const mongoose_1 = require("mongoose");
+const mongoose_unique_validator_1 = __importDefault(require("mongoose-unique-validator"));
+const userSchema = new mongoose_1.Schema({
     facebookID: {
         type: String,
         unique: true,
@@ -22,7 +27,7 @@ const userSchema = new Schema({
     },
     properties: [
         {
-            type: Schema.Types.ObjectId,
+            type: mongoose_1.Schema.Types.ObjectId,
             ref: 'Property',
         },
     ],
@@ -35,5 +40,5 @@ userSchema.set('toJSON', {
         delete returnedObject.passwordHash;
     },
 });
-userSchema.plugin(uniqueValidator);
-export default model('User', userSchema);
+userSchema.plugin(mongoose_unique_validator_1.default);
+exports.default = (0, mongoose_1.model)('User', userSchema);

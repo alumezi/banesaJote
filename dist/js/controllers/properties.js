@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -7,15 +8,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import Express from 'express';
-const PropertyRouter = Express.Router();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const PropertyRouter = express_1.default.Router();
 // const jwt = require('jsonwebtoken');
-import multer from 'multer';
-const upload = multer({ dest: 'uploads/' });
-import Property from '../models/property';
+const multer_1 = __importDefault(require("multer"));
+const upload = (0, multer_1.default)({ dest: 'uploads/' });
+const property_1 = __importDefault(require("../models/property"));
 // import { requireLogin } from '../utils/middleware';
 PropertyRouter.get('/info', (request, response) => {
-    Property.countDocuments({}).then((count) => {
+    property_1.default.countDocuments({}).then((count) => {
         response.status(200).json({
             info: `Property has info for ${count} properties ${new Date()}`,
         });
@@ -27,7 +32,7 @@ PropertyRouter.get('/', (request, response, next) => {
     // if (!token || !decodedToken.id) {
     //   return response.status(401).json({ error: 'token missing or invalid' });
     // }
-    return Property.find({})
+    return property_1.default.find({})
         .then((res) => {
         response.json(res);
     })
@@ -80,7 +85,7 @@ PropertyRouter.post('/create', upload.array('photos', 6), (request, response, ne
             error: 'Size missing',
         });
     }
-    const PropertyEntry = new Property(Object.assign({ date: new Date() }, resource));
+    const PropertyEntry = new property_1.default(Object.assign({ date: new Date() }, resource));
     return PropertyEntry.save()
         .then((savedEntry) => {
         response.json(savedEntry);
@@ -106,8 +111,8 @@ PropertyRouter.post('/seed', (request, response) => __awaiter(void 0, void 0, vo
             ],
         },
     ];
-    yield Property.deleteMany({});
-    Property.insertMany(properties, (err) => {
+    yield property_1.default.deleteMany({});
+    property_1.default.insertMany(properties, (err) => {
         if (err) {
             response.status(400).end();
         }
@@ -116,4 +121,4 @@ PropertyRouter.post('/seed', (request, response) => __awaiter(void 0, void 0, vo
         }
     });
 }));
-export default PropertyRouter;
+exports.default = PropertyRouter;

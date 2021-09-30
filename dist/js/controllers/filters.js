@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -7,13 +8,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import Express from 'express';
-import short from 'short-uuid';
-import Filters from '../models/filters';
-import logger from '../utils/logger';
-const FilterRouter = Express.Router();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const short_uuid_1 = __importDefault(require("short-uuid"));
+const filters_1 = __importDefault(require("../models/filters"));
+const logger_1 = __importDefault(require("../utils/logger"));
+const FilterRouter = express_1.default.Router();
 FilterRouter.get('/', (request, response, next) => {
-    Filters.find({})
+    filters_1.default.find({})
         .then((res) => {
         response.json(res);
     })
@@ -111,15 +116,15 @@ FilterRouter.post('/seed', (request, response) => __awaiter(void 0, void 0, void
     ];
     filters.forEach((item) => {
         item.filters.forEach((filter) => {
-            filter.id = short.generate();
+            filter.id = short_uuid_1.default.generate();
         });
     });
-    yield Filters.deleteMany({});
-    Filters.insertMany(filters, (err) => {
+    yield filters_1.default.deleteMany({});
+    filters_1.default.insertMany(filters, (err) => {
         if (err) {
-            logger.info(err);
-            logger.info(err.message);
-            logger.info('ERRRORRRRRR');
+            logger_1.default.info(err);
+            logger_1.default.info(err.message);
+            logger_1.default.info('ERRRORRRRRR');
             response.status(400).end();
         }
         else {
@@ -127,4 +132,4 @@ FilterRouter.post('/seed', (request, response) => __awaiter(void 0, void 0, void
         }
     });
 }));
-export default FilterRouter;
+exports.default = FilterRouter;
