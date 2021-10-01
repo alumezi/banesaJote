@@ -52,6 +52,10 @@ app.use('/api/login', LoginRouter);
 app.use('/api/users', UserRouter);
 app.use('/api/properties', PropertyRouter);
 app.use('/api/filters', FilterRouter);
+app.get('*', (req, res) => {
+  logger.info('sending index html');
+  res.sendFile(path.join(__dirname, 'build/index.html'));
+});
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
 
