@@ -22,17 +22,7 @@ const unknownEndpoint = (
   response: Response,
   next: NextFunction
 ) => {
-  logger.info('---');
-  logger.info(process.env.NODE_ENV);
-  logger.info(request.header('x-forwarded-proto'));
-  logger.info(request.hostname);
-  logger.info(request.url);
-  logger.info('---');
-  if (request.header('x-forwarded-proto') !== 'https') {
-    response.redirect('/');
-  } else {
-    next();
-  }
+  response.redirect('/');
 };
 
 const errorHandler = (
