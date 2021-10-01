@@ -23,10 +23,6 @@ const unknownEndpoint = (
   next: NextFunction
 ) => {
   response.redirect('/');
-  if (request.header('X-Forwarded-Proto') !== 'https') {
-  } else {
-    next();
-  }
 };
 
 const errorHandler = (
