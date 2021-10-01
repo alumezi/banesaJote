@@ -15,8 +15,8 @@
         "start:dev": "cross-env NODE_ENV=development concurrently \"tsc -w\" \"nodemon dist/js/index.js\"",
         "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
         "build:ui": "rm -rf build && cd ./client && npm run build --prod  && cp -r build ..",
-        "deploy": "git push heroku main",
-        "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push && npm run deploy",
+        "deploy:manual": "git push heroku main",
+        "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push",
         "logs:prod": "heroku logs --tail",
         "lint": "eslint ."
     },

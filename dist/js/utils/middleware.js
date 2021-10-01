@@ -17,7 +17,7 @@ const morganLogger = (0, morgan_1.default)((tokens, req, res) => [
     'ms',
     JSON.stringify(tokens.returnData(req, res)),
 ].join(' '));
-const unknownEndpoint = (request, response) => {
+const unknownEndpoint = (request, response, next) => {
     response.redirect('/');
 };
 const errorHandler = (error, request, response, next) => {
