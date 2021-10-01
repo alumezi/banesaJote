@@ -17,8 +17,22 @@ const morganLogger = morgan((tokens, req: Request, res: Response) =>
   ].join(' ')
 );
 
-const unknownEndpoint = (request: Request, response: Response) => {
-  response.redirect('/');
+const unknownEndpoint = (
+  request: Request,
+  response: Response,
+  next: NextFunction
+) => {
+  console.log('---');
+  console.log(process.env.NODE_ENV);
+  console.log(request.header('x-forwarded-proto'));
+  console.log(request.hostname);
+  console.log(request.url);
+  console.log('---');
+  if (request.header('x-forwarded-proto') !== 'https') {
+    response.redirect('/');
+  } else {
+    next();
+  }
 };
 
 const errorHandler = (
