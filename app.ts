@@ -53,7 +53,7 @@ app.use('/api/users', UserRouter);
 app.use('/api/properties', PropertyRouter);
 app.use('/api/filters', FilterRouter);
 app.get('*', (req, res) => {
-  console.log('sending index html');
+  logger.info('sending index html');
   res.sendFile(path.join(__dirname, 'build/index.html'));
 });
 app.use(middleware.unknownEndpoint);
