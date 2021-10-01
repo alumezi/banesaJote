@@ -22,7 +22,11 @@ const unknownEndpoint = (
   response: Response,
   next: NextFunction
 ) => {
-  response.redirect('/');
+  if (request.header('X-Forwarded-Proto') !== 'https') {
+    response.redirect('/');
+  } else {
+    next();
+  }
 };
 
 const errorHandler = (
