@@ -36,7 +36,7 @@ mongoose_1.default
 });
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
-app.use(express_1.default.static(path_1.default.join(__dirname, 'build')));
+app.use('/', express_1.default.static(path_1.default.join(__dirname, 'build')));
 app.use(middleware_1.default.extractToken);
 app.use(middleware_1.default.morganLogger);
 app.use((0, cookie_session_1.default)({
