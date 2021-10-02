@@ -56,7 +56,14 @@ app.use('/api/properties', PropertyRouter);
 app.use('/api/filters', FilterRouter);
 
 function defaultRoute(req: Request, res: Response) {
-  res.sendFile(path.join(process.cwd(), 'build/index.html'));
+  logger.info('SENDING HTML');
+  logger.info(path.join(__dirname, 'build'));
+  fs.readFile(path.join(__dirname, 'build'), (err, data) => {
+    logger.info(data);
+  });
+  res.sendFile('index.html', {
+    root: path.join(process.cwd(), 'build'),
+  });
 }
 
 app.get('/', (req: Request, res: Response) => {
