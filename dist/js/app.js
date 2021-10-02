@@ -36,7 +36,8 @@ mongoose_1.default
 });
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
-app.use('/', express_1.default.static(path_1.default.join(__dirname, 'build')));
+logger_1.default.info();
+app.use(express_1.default.static(path_1.default.join(__dirname, 'build')));
 app.use(middleware_1.default.extractToken);
 app.use(middleware_1.default.morganLogger);
 app.use((0, cookie_session_1.default)({
@@ -53,6 +54,17 @@ app.use('/api/filters', filters_1.default);
 app.get('*', (req, res) => {
     logger_1.default.info('sending index html');
     res.sendFile(path_1.default.join(__dirname, 'build/index.html'));
+});
+function defaultRoute(req, res) {
+    res.sendFile('index.html', {
+        root: path_1.default.join(process.cwd(), 'build'),
+    });
+}
+app.get('/', (req, res) => {
+    defaultRoute(req, res);
+});
+app.get('*', (req, res) => {
+    defaultRoute(req, res);
 });
 app.use(middleware_1.default.unknownEndpoint);
 app.use(middleware_1.default.errorHandler);

@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import passport from 'passport';
 import path from 'path';
@@ -35,7 +35,8 @@ mongoose
 
 app.use(express.json());
 app.use(cors());
-app.use('/', express.static(path.join(__dirname, 'build')));
+logger.info();
+app.use(express.static(path.join(__dirname, 'build')));
 app.use(middleware.extractToken);
 app.use(middleware.morganLogger);
 app.use(
@@ -56,6 +57,21 @@ app.get('*', (req, res) => {
   logger.info('sending index html');
   res.sendFile(path.join(__dirname, 'build/index.html'));
 });
+
+function defaultRoute(req: Request, res: Response) {
+  res.sendFile('index.html', {
+    root: path.join(process.cwd(), 'build'),
+  });
+}
+
+app.get('/', (req: Request, res: Response) => {
+  defaultRoute(req, res);
+});
+
+app.get('*', (req: Request, res: Response) => {
+  defaultRoute(req, res);
+});
+
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
 
