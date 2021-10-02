@@ -54,6 +54,15 @@ app.use('/api/login', LoginRouter);
 app.use('/api/users', UserRouter);
 app.use('/api/properties', PropertyRouter);
 app.use('/api/filters', FilterRouter);
+
+function defaultRoute(req: Request, res: Response) {
+  res.sendFile(path.join(__dirname, 'build/index.html'));
+}
+
+app.get('*', (req: Request, res: Response) => {
+  defaultRoute(req, res);
+});
+
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
 
