@@ -35,7 +35,7 @@ mongoose
 
 app.use(express.json());
 app.use(cors());
-app.use(express.static(path.join(__dirname, 'build')));
+app.use('/', express.static(path.join(__dirname, 'build')));
 app.use(middleware.extractToken);
 app.use(middleware.morganLogger);
 app.use(

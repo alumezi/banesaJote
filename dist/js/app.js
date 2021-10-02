@@ -50,6 +50,10 @@ app.use('/api/login', login_1.default);
 app.use('/api/users', users_1.default);
 app.use('/api/properties', properties_1.default);
 app.use('/api/filters', filters_1.default);
+app.get('*', (req, res) => {
+    logger_1.default.info('sending index html');
+    res.sendFile(path_1.default.join(__dirname, 'build/index.html'));
+});
 app.use(middleware_1.default.unknownEndpoint);
 app.use(middleware_1.default.errorHandler);
 exports.default = app;
