@@ -13,6 +13,7 @@ import FilterRouter from './controllers/filters';
 import AuthRouter from './controllers/auth';
 import boot from './boot/auth';
 import 'express-async-errors';
+import fs from 'fs';
 
 const app = express();
 import middleware from './utils/middleware';
@@ -53,12 +54,13 @@ app.use('/api/login', LoginRouter);
 app.use('/api/users', UserRouter);
 app.use('/api/properties', PropertyRouter);
 app.use('/api/filters', FilterRouter);
-app.get('*', (req, res) => {
-  logger.info('sending index html');
-  res.sendFile(path.join(__dirname, 'build/index.html'));
-});
 
 function defaultRoute(req: Request, res: Response) {
+  logger.info('SENDING HTML');
+  logger.info(path.join(process.cwd(), 'build'));
+  fs.readFile(path.join(process.cwd(), 'build'), function (err, data) {
+    logger.info(data);
+  });
   res.sendFile('index.html', {
     root: path.join(process.cwd(), 'build'),
   });
