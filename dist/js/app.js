@@ -51,18 +51,9 @@ app.use('/api/login', login_1.default);
 app.use('/api/users', users_1.default);
 app.use('/api/properties', properties_1.default);
 app.use('/api/filters', filters_1.default);
-app.get('*', (req, res) => {
-    logger_1.default.info('sending index html');
-    res.sendFile(path_1.default.join(__dirname, 'build/index.html'));
-});
 function defaultRoute(req, res) {
-    res.sendFile('index.html', {
-        root: path_1.default.join(process.cwd(), 'build'),
-    });
+    res.sendFile(path_1.default.join(__dirname, 'build/index.html'));
 }
-app.get('/', (req, res) => {
-    defaultRoute(req, res);
-});
 app.get('*', (req, res) => {
     defaultRoute(req, res);
 });

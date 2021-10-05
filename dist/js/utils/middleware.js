@@ -18,7 +18,12 @@ const morganLogger = (0, morgan_1.default)((tokens, req, res) => [
     JSON.stringify(tokens.returnData(req, res)),
 ].join(' '));
 const unknownEndpoint = (request, response, next) => {
-    response.redirect('/');
+    if (request.header('X-Forwarded-Proto') !== 'https') {
+        response.redirect('/');
+    }
+    else {
+        next();
+    }
 };
 const errorHandler = (error, request, response, next) => {
     if (error.name === 'CastError') {
