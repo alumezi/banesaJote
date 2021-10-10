@@ -17,7 +17,7 @@ export default function Navigation({
     <div className="flex justify-between items-center py-4 md:justify-start md:space-x-10">
       <div className="flex justify-start lg:w-0 lg:flex-1">
         <Link to="/">
-          <span className="sr-only">Workflow</span>
+          <span className="sr-only">Header logo</span>
           <img
             className="h-4 w-auto sm:h-6"
             src={logo}
