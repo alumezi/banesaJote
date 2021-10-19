@@ -12,7 +12,10 @@ export function PostComponent({
   handleCreatePropertySubmit: (value: IProperty) => Promise<void>;
 }) {
   return (
-    <div className="md:grid md:grid-cols-2 md:gap-3 h-full w-full top-auto">
+    <div
+      data-testid="post_component"
+      className="md:grid md:grid-cols-2 md:gap-3 h-full w-full top-auto"
+    >
       <div className="md:col-span-1" style={{ height: 'calc(100vh - 74px)' }}>
         <List properties={properties} />
       </div>

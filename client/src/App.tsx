@@ -17,12 +17,14 @@ import { LoginComponent } from './components/login';
 import { RegisterComponent } from './components/register';
 import { PostComponent } from './components/post';
 import { IFilter, IProperty, IUser } from './types';
+import { useLocalStorageState } from './util';
 
 export function App() {
   const [user, setUser] = useState<IUser | null>(null);
   const [filterData, setFilterData] = useState<Record<string, IFilter[]>>({});
   const [properties, setProperties] = useState<IProperty[]>([]);
   const [isLoading, setisLoading] = useState<boolean>(true);
+  const [localStorageUser, setLocalStorageUser] = useLocalStorageState('user');
   const history = useHistory();
 
   useEffect(() => {
@@ -49,7 +51,7 @@ export function App() {
   const submitLogin = async (username: string, password: string) => {
     const user = await login(username, password);
     setUser(user);
-    localStorage.setItem('user', JSON.stringify(user));
+    setLocalStorageUser(user);
     history.push('/main');
   };
 
@@ -63,7 +65,7 @@ export function App() {
       return alert('Fjalekalimi nuk eshte i njejte');
     }
     // const user = await signup(username, name, password);
-    // localStorage.setItem("user", JSON.stringify(user));
+    // setLocalStorageUser(user);
     history.push('/login');
   };
 
@@ -75,7 +77,7 @@ export function App() {
   const logOut = async () => {
     await logout();
     setUser(null);
-    localStorage.removeItem('user');
+    setLocalStorageUser(null);
   };
 
   if (isLoading) {
