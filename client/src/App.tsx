@@ -19,40 +19,77 @@ import { PostComponent } from './components/post';
 import { IFilter, IProperty, IUser } from './types';
 import { useLocalStorageState } from './util';
 
+interface IState {
+  user: IUser | null;
+  filterData: Record<string, IFilter[]> | {};
+  properties: IProperty[] | [];
+  loadingState: 'idle' | 'pending' | 'resolved' | 'rejected';
+  error?: Error;
+}
+
 export function App() {
-  const [user, setUser] = useState<IUser | null>(null);
-  const [filterData, setFilterData] = useState<Record<string, IFilter[]>>({});
-  const [properties, setProperties] = useState<IProperty[]>([]);
-  const [isLoading, setisLoading] = useState<boolean>(true);
+  const [state, setState] = useState<IState>({
+    user: null,
+    filterData: {},
+    properties: [],
+    loadingState: 'idle',
+  });
   const [localStorageUser, setLocalStorageUser] = useLocalStorageState('user');
   const history = useHistory();
 
+  const updateState = (
+    name: string,
+    newStateEntry:
+      | IUser
+      | Record<string, IFilter[]>
+      | IProperty[]
+      | string
+      | Error
+      | null
+  ) => {
+    setState((state) => {
+      return { ...state, [name]: newStateEntry };
+    });
+  };
+
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        updateState('loadingState', 'pending');
+        const userFromAPI = await getUser();
+        const allFilterData = await getFilters();
+        console.log(
+          '🚀 ~ file: App.tsx ~ line 62 ~ fetchData ~ userFromAPI',
+          userFromAPI
+        );
+        updateState('user', userFromAPI);
+
+        const filterDataReady: Record<string, IFilter[]> = {};
+        allFilterData.forEach((element) => {
+          filterDataReady[element.name] = element.filters;
+        });
+        updateState('filterData', filterDataReady);
+
+        const properties = await getProperties();
+        updateState('loadingState', 'resolved');
+        updateState('properties', properties);
+      } catch (err) {
+        updateState('loadingState', 'rejected');
+        updateState('error', err as Error);
+      }
+    };
     fetchData();
   }, []);
 
-  const fetchData = async () => {
-    const userFromAPI = await getUser();
-    const allFilterData = await getFilters();
-    setUser(userFromAPI);
-
-    const filterDataReady: Record<string, IFilter[]> = {};
-    allFilterData.forEach((element) => {
-      filterDataReady[element.name] = element.filters;
-    });
-    setFilterData(filterDataReady);
-
-    const properties = await getProperties();
-
-    setProperties(properties);
-    setisLoading(false);
-  };
-
   const submitLogin = async (username: string, password: string) => {
-    const user = await login(username, password);
-    setUser(user);
-    setLocalStorageUser(user);
-    history.push('/main');
+    try {
+      const user = await login(username, password);
+      updateState('user', user);
+      setLocalStorageUser(user);
+      history.push('/main');
+    } catch (err) {
+      updateState('error', err as Error);
+    }
   };
 
   const submitSignUp = async (
@@ -70,17 +107,21 @@ export function App() {
   };
 
   const handleCreatePropertySubmit = async (values: IProperty) => {
-    const freshProperty = await createProperty(values);
-    setProperties([freshProperty, ...properties]);
+    try {
+      const freshProperty = await createProperty(values);
+      updateState('properties', [freshProperty, ...state?.properties]);
+    } catch (err) {
+      updateState('error', err as Error);
+    }
   };
 
   const logOut = async () => {
     await logout();
-    setUser(null);
+    updateState('user', null);
     setLocalStorageUser(null);
   };
-
-  if (isLoading) {
+  console.log(state);
+  if (state.loadingState === 'idle' || state.loadingState === 'pending') {
     return (
       <ReactLoading
         height={'30%'}
@@ -91,22 +132,23 @@ export function App() {
       />
     );
   }
-
+  console.log('here ?');
+  console.log(state);
   return (
     <Switch>
       <Route path="/" exact>
-        <Nav loggedIn={Boolean(user!.id)} logOut={logOut} />
-        <FilterBar data={filterData} />
-        <MainBody properties={properties} />
+        <Nav loggedIn={Boolean(state.user!.id)} logOut={logOut} />
+        <FilterBar data={state.filterData} />
+        <MainBody properties={state.properties} />
       </Route>
       <Route path="/login">
         <LoginComponent submit={submitLogin} />
       </Route>
       <Route path="/post">
-        <Nav loggedIn={Boolean(user!.id)} logOut={logOut} />
+        <Nav loggedIn={Boolean(state.user!.id)} logOut={logOut} />
         <PostComponent
-          filterData={filterData}
-          properties={properties}
+          filterData={state.filterData}
+          properties={state.properties}
           handleCreatePropertySubmit={handleCreatePropertySubmit}
         />
       </Route>
