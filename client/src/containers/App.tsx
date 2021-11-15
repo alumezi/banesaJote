@@ -1,52 +1,56 @@
 import { useEffect, useState } from 'react';
-import Nav from './components/clientView/nav';
-import { FilterBar } from './components/clientView/filterBar';
-import {
-  getUser,
-  getFilters,
-  getProperties,
-  createProperty,
-  login,
-  logout,
-} from './services/api';
 import ReactLoading from 'react-loading';
-import './App.css';
-import { MainBody } from './components/clientView/body';
+import { useSelector, useDispatch } from 'react-redux';
 import { Switch, Route, useHistory } from 'react-router-dom';
-import { LoginComponent } from './components/login';
-import { RegisterComponent } from './components/register';
-import { PostComponent } from './components/post';
-import { IFilter, IProperty, IUser } from './types';
-import { useLocalStorageState } from './util';
+
+import Nav from '../components/clientView/nav';
+import { FilterBar } from '../components/clientView/filterBar';
+import { getUser, createProperty, login, logout } from '../services/api';
+import { MainBody } from '../components/clientView/body';
+import { LoginComponent } from '../components/login';
+import { RegisterComponent } from '../components/register';
+import { PostComponent } from '../components/post';
+import { IFilter, IProperty, IUser } from '../types';
+import { useLocalStorageState } from '../util';
+import { fetchFilters, fetchProperties } from '../actions';
+import './App.css';
+
+interface StateProperties {
+  items: IProperty[];
+  isFetching: boolean;
+}
+
+interface StateFilters {
+  items: Record<string, IFilter[]>;
+  isFetching: boolean;
+}
+
+interface RootState {
+  properties: StateProperties;
+  filters: StateFilters;
+}
 
 export function App() {
+  const { filters, properties } = useSelector((state: RootState) => state);
+  const dispatch = useDispatch();
+
   const [user, setUser] = useState<IUser | null>(null);
-  const [filterData, setFilterData] = useState<Record<string, IFilter[]>>({});
-  const [properties, setProperties] = useState<IProperty[]>([]);
   const [isLoading, setisLoading] = useState<boolean>(true);
   const [localStorageUser, setLocalStorageUser] = useLocalStorageState('user');
   const history = useHistory();
 
   useEffect(() => {
+    const fetchData = async () => {
+      dispatch(fetchProperties());
+      dispatch(fetchFilters());
+
+      const userFromAPI = await getUser();
+
+      setUser(userFromAPI);
+      setisLoading(false);
+    };
     fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    const userFromAPI = await getUser();
-    const allFilterData = await getFilters();
-    setUser(userFromAPI);
-
-    const filterDataReady: Record<string, IFilter[]> = {};
-    allFilterData.forEach((element) => {
-      filterDataReady[element.name] = element.filters;
-    });
-    setFilterData(filterDataReady);
-
-    const properties = await getProperties();
-
-    setProperties(properties);
-    setisLoading(false);
-  };
+  }, [dispatch]);
 
   const submitLogin = async (username: string, password: string) => {
     const user = await login(username, password);
@@ -71,7 +75,7 @@ export function App() {
 
   const handleCreatePropertySubmit = async (values: IProperty) => {
     const freshProperty = await createProperty(values);
-    setProperties([freshProperty, ...properties]);
+    // setProperties([freshProperty, ...properties]);
   };
 
   const logOut = async () => {
@@ -80,7 +84,7 @@ export function App() {
     setLocalStorageUser(null);
   };
 
-  if (isLoading) {
+  if (isLoading || filters.isFetching || properties.isFetching) {
     return (
       <ReactLoading
         height={'30%'}
@@ -96,8 +100,8 @@ export function App() {
     <Switch>
       <Route path="/" exact>
         <Nav loggedIn={Boolean(user!.id)} logOut={logOut} />
-        <FilterBar data={filterData} />
-        <MainBody properties={properties} />
+        <FilterBar data={filters.items} />
+        <MainBody properties={properties.items} />
       </Route>
       <Route path="/login">
         <LoginComponent submit={submitLogin} />
@@ -105,8 +109,8 @@ export function App() {
       <Route path="/post">
         <Nav loggedIn={Boolean(user!.id)} logOut={logOut} />
         <PostComponent
-          filterData={filterData}
-          properties={properties}
+          filterData={filters.items}
+          properties={properties.items}
           handleCreatePropertySubmit={handleCreatePropertySubmit}
         />
       </Route>
