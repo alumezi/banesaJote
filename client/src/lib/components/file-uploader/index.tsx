@@ -1,4 +1,5 @@
 import { ChangeEventHandler, EventHandler } from 'react';
+import { ErrorBoundary } from '../../../components/errorBoundary';
 import { Thumb } from '../thumbnail';
 
 export const FileUploader = ({
@@ -17,7 +18,7 @@ export const FileUploader = ({
   multiple: boolean;
 }) => {
   return (
-    <>
+    <ErrorBoundary>
       <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
         <div className="space-y-1 text-center">
           {Array.prototype.map.call(files, (file) => (
@@ -59,6 +60,6 @@ export const FileUploader = ({
           <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
         </div>
       </div>
-    </>
+    </ErrorBoundary>
   );
 };

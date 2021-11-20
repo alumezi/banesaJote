@@ -1,4 +1,5 @@
 import { ReactElement } from 'react';
+import { ErrorBoundary } from '../../../components/errorBoundary';
 
 export const Block = ({
   children,
@@ -7,5 +8,9 @@ export const Block = ({
   children: ReactElement;
   classes: string;
 }) => {
-  return <div className={classes}>{children}</div>;
+  return (
+    <ErrorBoundary>
+      <div className={classes}>{children}</div>{' '}
+    </ErrorBoundary>
+  );
 };
