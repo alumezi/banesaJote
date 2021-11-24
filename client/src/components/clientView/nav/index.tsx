@@ -16,7 +16,7 @@ export default function Navigation({
 }) {
   return (
     <ErrorBoundary>
-      <div className="flex justify-between items-center py-4 md:justify-start md:space-x-10">
+      <div className="flex justify-between items-center py-4 md:justify-start md:space-x-10 mx-4">
         <div className="flex justify-start lg:w-0 lg:flex-1">
           <Link to="/">
             <span className="sr-only">Header logo</span>
