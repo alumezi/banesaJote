@@ -1,16 +1,17 @@
 import { Dispatch } from 'redux';
-import { IFilter, IFilters, IProperty } from '../types';
+import { IFilter, IFilters, IProperty, RootState } from '../types';
 
 export const REQUEST_PROPERTIES = 'REQUEST_PROPERTIES';
 export const RECEIVE_PROPERTIES = 'RECEIVE_PROPERTIES';
 export const REQUEST_FILTERS = 'REQUEST_FILTERS';
 export const RECEIVE_FILTERS = 'RECEIVE_FILTERS';
+export const ADD_FILTERS = 'ADD_FILTERS';
 
 const baseUrl = '/api';
 
-export const requestProperties = (properties: string) => ({
+export const requestProperties = () => ({
   type: REQUEST_PROPERTIES,
-  properties,
+  properties: 'properties',
 });
 
 export const requestFilters = (filters: string) => ({
@@ -22,6 +23,11 @@ export const receiveProperties = (properties: IProperty[]) => ({
   type: RECEIVE_PROPERTIES,
   properties,
   receivedAt: Date.now(),
+});
+
+export const setActiveFilters = (queryParams: any) => ({
+  type: ADD_FILTERS,
+  queryParams,
 });
 
 export const receiveFilters = (filters: IFilters[]) => {
@@ -48,10 +54,17 @@ export const fetchFilters = () => (dispatch: Dispatch) => {
   }
 };
 
-export const fetchProperties = () => (dispatch: Dispatch) => {
-  dispatch(requestProperties('properties'));
+export const fetchProperties = () => (
+  dispatch: Dispatch,
+  getState: () => RootState
+) => {
+  const { activeFilters } = getState();
+  const query = activeFilters.items.neighborhood
+    ? `filters[neighborhood]=${activeFilters.items.neighborhood.name}`
+    : '';
+  dispatch(requestProperties());
   try {
-    return fetch(`${baseUrl}/properties`)
+    return fetch(`${baseUrl}/properties/?${query}`)
       .then((response) => response.json())
       .then((json) => dispatch(receiveProperties(json)));
   } catch (err) {

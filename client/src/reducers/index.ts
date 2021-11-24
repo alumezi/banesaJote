@@ -5,8 +5,9 @@ import {
   RECEIVE_FILTERS,
   REQUEST_PROPERTIES,
   RECEIVE_PROPERTIES,
+  ADD_FILTERS,
 } from '../actions';
-import { IProperty, IFilter } from '../types';
+import { IProperty, IFilter, IActiveFilter } from '../types';
 
 interface PropertyActionProps {
   type: string;
@@ -18,6 +19,11 @@ interface FiltersActionProps {
   type: string;
   filters: Record<string, IFilter[]>;
   receivedAt: Date;
+}
+
+interface AddFiltersActionProps {
+  type: string;
+  queryParams: IActiveFilter;
 }
 
 const properties = (
@@ -70,9 +76,27 @@ const filters = (
   }
 };
 
+const activeFilters = (
+  state = {
+    items: {},
+  },
+  action: AddFiltersActionProps
+) => {
+  switch (action.type) {
+    case ADD_FILTERS:
+      return {
+        ...state,
+        items: action.queryParams,
+      };
+    default:
+      return state;
+  }
+};
+
 const rootReducer = combineReducers({
   properties,
   filters,
+  activeFilters,
 });
 
 export default rootReducer;

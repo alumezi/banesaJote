@@ -7,3 +7,7 @@ export interface IFilters {
   name: 'byLocation' | 'byParkingTypes' | 'byNumberOfRooms';
   filters: IFilter[];
 }
+
+export interface IActiveFilter {
+  neighborhood: IFilter;
+}

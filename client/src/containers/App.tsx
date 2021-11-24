@@ -10,25 +10,10 @@ import { MainBody } from '../components/clientView/body';
 import { LoginComponent } from '../components/login';
 import { RegisterComponent } from '../components/register';
 import { PostComponent } from '../components/post';
-import { IFilter, IProperty, IUser } from '../types';
+import { IProperty, IUser, RootState } from '../types';
 import { useLocalStorageState } from '../util';
 import { fetchFilters, fetchProperties } from '../actions';
 import './App.css';
-
-interface StateProperties {
-  items: IProperty[];
-  isFetching: boolean;
-}
-
-interface StateFilters {
-  items: Record<string, IFilter[]>;
-  isFetching: boolean;
-}
-
-interface RootState {
-  properties: StateProperties;
-  filters: StateFilters;
-}
 
 export function App() {
   const { filters, properties } = useSelector((state: RootState) => state);

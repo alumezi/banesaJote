@@ -1,9 +1,9 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
 import { classNames } from '../../util/class';
-import './index.css';
 import { ErrorBoundary } from '../../../components/errorBoundary';
+import './index.css';
 
 export function Select({
   items,

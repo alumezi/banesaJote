@@ -35,7 +35,6 @@ it('navigates', () => {
   });
 
   const button = document.querySelector("[data-testid='post_page_button']");
-  console.log(document.getElementById('post_page_button'));
   const postComponent = document.querySelector(
     "[data-testid='post_component']"
   );
@@ -46,7 +45,6 @@ it('navigates', () => {
     button.dispatchEvent(new MouseEvent('click', { bubbles: true }));
   });
 
-  console.log(document.querySelector("[data-testid='post_page_button']"));
   const postComponentAfterRender = document.querySelector(
     "[data-testid='post_component']"
   );
