@@ -19,7 +19,6 @@ export function App() {
   const dispatch = useDispatch();
 
   const [user, setUser] = useState<IUser | null>(null);
-  const [isLoading, setisLoading] = useState<boolean>(true);
   const [localStorageUser, setLocalStorageUser] = useLocalStorageState('user');
   const history = useHistory();
 
@@ -31,7 +30,6 @@ export function App() {
       const userFromAPI = await getUser();
 
       setUser(userFromAPI);
-      setisLoading(false);
     };
     fetchData();
   }, [dispatch]);
