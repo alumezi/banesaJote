@@ -10,7 +10,7 @@ export default function Navigation({
   logIn,
   logOut,
 }: {
-  loggedIn: boolean;
+  loggedIn?: boolean;
   logIn?: (username: string, password: string) => IUser;
   logOut: () => Promise<void>;
 }) {

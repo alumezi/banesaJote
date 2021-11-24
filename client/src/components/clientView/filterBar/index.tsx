@@ -7,26 +7,26 @@ import { IFilter, RootState } from '../../../types';
 import { fetchProperties, setActiveFilters } from '../../../actions';
 import './index.css';
 
-export interface IFilterBar {
-  [key: string]: IFilter[];
-}
-
-export const FilterBar = ({ data }: { data: IFilterBar }) => {
+export const FilterBar = () => {
   const dispatch = useDispatch();
-  const { neighborhood } = useSelector(
-    (state: RootState) => state.activeFilters.items
-  );
+  const state = useSelector((state: RootState) => state);
+  const filters = state.filters;
+  const { neighborhood } = state.activeFilters.items;
 
   const handleLocationChange = (locationItem: IFilter) => {
     dispatch(setActiveFilters({ neighborhood: locationItem }));
     dispatch(fetchProperties());
   };
 
+  if (filters.isFetching) {
+    return null;
+  }
+
   return (
     <div className="flex space-x-4 mb-3 px-4">
       <Block classes="w-2/12">
         <Select
-          items={data.byLocation}
+          items={filters.items.byLocation}
           onChange={handleLocationChange}
           value={neighborhood?.name}
         />
@@ -38,10 +38,10 @@ export const FilterBar = ({ data }: { data: IFilterBar }) => {
         <Input prepend="€" />
       </Block>
       <Block classes="w-2/12">
-        <Select items={data.byNumberOfRooms} />
+        <Select items={filters.items.byNumberOfRooms} />
       </Block>
       <Block classes="w-2/12">
-        <Select items={data.byParkingTypes} />
+        <Select items={filters.items.byParkingTypes} />
       </Block>
     </div>
   );

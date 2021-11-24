@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import ReactLoading from 'react-loading';
 import { useSelector, useDispatch } from 'react-redux';
 import { Switch, Route, useHistory } from 'react-router-dom';
 
@@ -69,33 +68,20 @@ export function App() {
     setLocalStorageUser(null);
   };
 
-  if (isLoading || filters.isFetching || properties.isFetching) {
-    return (
-      <ReactLoading
-        height={'30%'}
-        width={'30%'}
-        className="react-loading"
-        color="#28A745"
-        type="bubbles"
-      />
-    );
-  }
-
   return (
     <Switch>
       <Route path="/" exact>
-        <Nav loggedIn={Boolean(user!.id)} logOut={logOut} />
-        <FilterBar data={filters.items} />
-        <MainBody properties={properties.items} />
+        <Nav logOut={logOut} />
+        <FilterBar />
+        <MainBody />
       </Route>
       <Route path="/login">
         <LoginComponent submit={submitLogin} />
       </Route>
       <Route path="/post">
-        <Nav loggedIn={Boolean(user!.id)} logOut={logOut} />
+        <Nav logOut={logOut} />
         <PostComponent
           filterData={filters.items}
-          properties={properties.items}
           handleCreatePropertySubmit={handleCreatePropertySubmit}
         />
       </Route>
