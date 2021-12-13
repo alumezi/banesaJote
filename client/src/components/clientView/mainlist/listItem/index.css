@@ -1,5 +1,5 @@
 .list__item {
-  @apply flex relative bg-white  mr-2 mb-2 shadow-sm border border-gray-100 hover:bg-blue-50 cursor-pointer rounded-sm;
+  @apply flex relative bg-white  mr-2 mb-2 shadow-sm border border-gray-100 hover:bg-blue-50 cursor-pointer rounded-md;
 }
 
 .lif__img__container {
