@@ -17,7 +17,7 @@ export const FilterBar = () => {
     dispatch(
       setActiveFilters({
         ...allActiveFilters,
-        neighborhood: locationItem.searchKey,
+        neighborhood: locationItem,
       })
     );
     dispatch(fetchProperties());
@@ -27,7 +27,17 @@ export const FilterBar = () => {
     dispatch(
       setActiveFilters({
         ...allActiveFilters,
-        numberOfRooms: locationItem.searchKey,
+        numberOfRooms: locationItem,
+      })
+    );
+    dispatch(fetchProperties());
+  };
+
+  const handleParkingChange = (locationItem: IFilter) => {
+    dispatch(
+      setActiveFilters({
+        ...allActiveFilters,
+        parking: locationItem,
       })
     );
     dispatch(fetchProperties());
@@ -36,7 +46,7 @@ export const FilterBar = () => {
   if (filters.isFetching) {
     return null;
   }
-
+  console.log('allActiveFilters', allActiveFilters);
   return (
     <div className="flex space-x-4 mb-3 px-4">
       <Block classes="w-2/12">
@@ -44,6 +54,7 @@ export const FilterBar = () => {
           items={filters.items.neighborhood}
           onChange={handleLocationChange}
           value={allActiveFilters.neighborhood?.name}
+          defaultValue="Te gjitha"
         />
       </Block>
       <Block classes="w-2/12">
@@ -57,10 +68,16 @@ export const FilterBar = () => {
           items={filters.items.byNumberOfRooms}
           onChange={handleNumberOfRoomsChange}
           value={allActiveFilters.numberOfRooms?.name}
+          defaultValue="Te gjitha"
         />
       </Block>
       <Block classes="w-2/12">
-        <Select items={filters.items.byParkingTypes} />
+        <Select
+          items={filters.items.byParkingTypes}
+          onChange={handleParkingChange}
+          value={allActiveFilters.parking?.name}
+          defaultValue="Te gjitha"
+        />
       </Block>
     </div>
   );

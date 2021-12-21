@@ -11,13 +11,18 @@ export function Select({
   value,
   onChange,
   onBlur,
+  defaultValue,
 }: {
   items: { id: string; name: string }[];
   label?: string;
   value?: string | number;
   onChange?: any;
   onBlur?: any;
+  defaultValue?: string | number;
 }) {
+  if (defaultValue && !value) {
+    value = defaultValue;
+  }
   return (
     <ErrorBoundary>
       <Listbox value={value} onChange={onChange}>

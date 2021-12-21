@@ -1,7 +1,6 @@
 import Express from 'express';
 import short from 'short-uuid';
 import Filters from '../models/filters';
-import { IFilters } from '../types';
 import logger from '../utils/logger';
 
 const FilterRouter = Express.Router();

@@ -37,7 +37,7 @@ export const receiveProperties = (properties: IProperty[]) => ({
   receivedAt: Date.now(),
 });
 
-export const setActiveFilters = (queryParams: any) => ({
+export const setActiveFilters = (queryParams: Record<string, IFilter>) => ({
   type: ADD_FILTERS,
   queryParams,
 });
@@ -86,8 +86,8 @@ export const fetchProperties = () => (
   const query = [];
 
   for (let key in activeFilters.items) {
-    if (activeFilters.items[key]) {
-      query.push(`filters[${key}]=${activeFilters.items[key]}`);
+    if (activeFilters.items[key].searchKey) {
+      query.push(`filters[${key}]=${activeFilters.items[key].searchKey}`);
     }
   }
 

@@ -21,7 +21,7 @@ const propertySchema: Schema = new Schema({
   levelOfquietness: Number,
   amenities: [String],
   pictureUrls: [String],
-  parking: Boolean,
+  parking: String,
 });
 
 propertySchema.set('toJSON', {

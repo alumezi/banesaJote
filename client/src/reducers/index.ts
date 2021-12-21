@@ -115,7 +115,6 @@ const activeFilters = (
   },
   action: AddFiltersActionProps
 ) => {
-  console.log(action.queryParams);
   switch (action.type) {
     case ADD_FILTERS:
       return {
