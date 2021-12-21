@@ -24,6 +24,7 @@ const propertySchema = new mongoose_1.Schema({
     levelOfquietness: Number,
     amenities: [String],
     pictureUrls: [String],
+    parking: Boolean,
 });
 propertySchema.set('toJSON', {
     transform: (document, returnedObject) => {

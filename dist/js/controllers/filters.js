@@ -27,31 +27,37 @@ FilterRouter.get('/', (request, response, next) => {
 FilterRouter.post('/seed', (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     const filters = [
         {
-            name: 'byLocation',
+            name: 'neighborhood',
             filters: [
                 {
                     id: '',
                     name: 'Aktash',
+                    searchKey: 'aktash',
                 },
                 {
                     id: '',
                     name: 'Ulpiane',
+                    searchKey: 'ulpiane',
                 },
                 {
                     id: '',
                     name: 'Dardani',
+                    searchKey: 'dardani',
                 },
                 {
                     id: '',
                     name: 'Rruga B',
+                    searchKey: 'rruga b',
                 },
                 {
                     id: '',
                     name: 'Mati 1',
+                    searchKey: 'mati 1',
                 },
                 {
                     id: '',
                     name: 'Lagjia e spitalit',
+                    searchKey: 'lagjia e spitalit',
                 },
             ],
         },
@@ -61,18 +67,22 @@ FilterRouter.post('/seed', (request, response) => __awaiter(void 0, void 0, void
                 {
                     id: '01',
                     name: '1',
+                    searchKey: '1',
                 },
                 {
                     id: '02',
                     name: '2',
+                    searchKey: '2',
                 },
                 {
                     id: '03',
                     name: '3',
+                    searchKey: '3',
                 },
                 {
                     id: '04',
                     name: '4',
+                    searchKey: '4',
                 },
             ],
         },
@@ -82,35 +92,39 @@ FilterRouter.post('/seed', (request, response) => __awaiter(void 0, void 0, void
                 {
                     id: '01',
                     name: 'Ska parking',
+                    searchKey: 'ska parking',
                 },
                 {
                     id: '02',
                     name: 'Parking Komunal',
+                    searchKey: 'parking komunal',
                 },
                 {
                     id: '03',
                     name: 'Garazhe',
+                    searchKey: 'garazhe',
                 },
                 {
                     id: '04',
                     name: 'Parking Banesor',
+                    searchKey: 'parking banesor',
                 },
             ],
         },
         {
             name: 'features',
             filters: [
-                { id: '01', name: 'terrace' },
-                { id: '02', name: 'kitchen' },
+                { id: '01', name: 'Terrase', searchKey: 'terrace' },
+                { id: '02', name: 'Kuzhine', searchKey: 'kitchen' },
             ],
         },
         {
             name: 'amenities',
             filters: [
-                { id: '01', name: 'wifi' },
-                { id: '02', name: 'tv' },
-                { id: '02', name: 'washingMachine' },
-                { id: '02', name: 'fridge' },
+                { id: '01', name: 'wifi', searchKey: 'wifi' },
+                { id: '02', name: 'tv', searchKey: 'tv' },
+                { id: '02', name: 'washingMachine', searchKey: 'washingmachine' },
+                { id: '02', name: 'fridge', searchKey: 'fridge' },
             ],
         },
     ];

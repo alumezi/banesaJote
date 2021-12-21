@@ -13,4 +13,5 @@ export interface IProperty extends Document {
   levelOfquietness: number;
   amenities: string[];
   pictureUrls: string[];
+  parking: boolean;
 }

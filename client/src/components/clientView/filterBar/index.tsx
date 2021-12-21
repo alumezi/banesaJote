@@ -14,7 +14,11 @@ export const FilterBar = () => {
   const { neighborhood } = state.activeFilters.items;
 
   const handleLocationChange = (locationItem: IFilter) => {
-    dispatch(setActiveFilters({ neighborhood: locationItem }));
+    console.log(
+      '🚀 ~ file: index.tsx ~ line 17 ~ handleLocationChange ~ locationItem',
+      locationItem
+    );
+    dispatch(setActiveFilters({ neighborhood: locationItem.searchKey }));
     dispatch(fetchProperties());
   };
 
@@ -26,7 +30,7 @@ export const FilterBar = () => {
     <div className="flex space-x-4 mb-3 px-4">
       <Block classes="w-2/12">
         <Select
-          items={filters.items.byLocation}
+          items={filters.items.neighborhood}
           onChange={handleLocationChange}
           value={neighborhood?.name}
         />

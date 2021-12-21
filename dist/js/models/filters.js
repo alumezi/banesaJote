@@ -6,8 +6,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
 const mongoose_unique_validator_1 = __importDefault(require("mongoose-unique-validator"));
 const filterSchema = new mongoose_1.Schema({
-    name: { type: String, unique: true },
     id: { type: String, unique: true },
+    name: { type: String, unique: true },
+    searchKey: { type: String, unique: true },
 });
 const filtersSchema = new mongoose_1.Schema({
     name: { type: String, unique: true },

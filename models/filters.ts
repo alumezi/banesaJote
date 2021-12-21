@@ -3,8 +3,9 @@ import uniqueValidator from 'mongoose-unique-validator';
 import { IFilters } from '../types';
 
 const filterSchema: Schema = new Schema({
-  name: { type: String, unique: true },
   id: { type: String, unique: true },
+  name: { type: String, unique: true },
+  searchKey: { type: String, unique: true },
 });
 
 const filtersSchema: Schema = new Schema({

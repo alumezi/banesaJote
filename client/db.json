@@ -2,10 +2,6 @@
     "filters": {
         "byLocation": [
             {
-                "id": "all",
-                "name": "Të gjitha"
-            },
-            {
                 "id": "001",
                 "name": "Aktash"
             },
@@ -32,10 +28,6 @@
         ],
         "byNumberOfRooms": [
             {
-                "id": "all",
-                "name": "Të gjitha"
-            },
-            {
                 "id": "1",
                 "name": "1"
             },
@@ -53,10 +45,6 @@
             }
         ],
         "byParkingTypes": [
-            {
-                "id": "all",
-                "name": "Të gjitha"
-            },
             {
                 "id": "001",
                 "name": "Ska parking"

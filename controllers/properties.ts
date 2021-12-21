@@ -25,10 +25,6 @@ PropertyRouter.get('/', (request, response, next) => {
   //   return response.status(401).json({ error: 'token missing or invalid' });
   // }
 
-  logger.info(
-    '🚀 ~ file: properties.ts ~ line 32 ~ PropertyRouter.get ~ filters',
-    request.query.filters
-  );
   return Property.find(request.query.filters)
     .then((res) => {
       response.json(res);

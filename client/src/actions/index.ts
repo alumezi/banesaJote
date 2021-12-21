@@ -45,6 +45,7 @@ export const setActiveFilters = (queryParams: any) => ({
 export const receiveFilters = (filters: IFilters[]) => {
   const filterDataReady: Record<string, IFilter[]> = {};
   filters.forEach((element) => {
+    element.filters.unshift({ id: 'all', name: 'Te gjitha', searchKey: '' });
     filterDataReady[element.name] = element.filters;
   });
 
@@ -82,12 +83,15 @@ export const fetchProperties = () => (
   getState: () => RootState
 ) => {
   const { activeFilters } = getState();
-  const query = activeFilters.items.neighborhood
-    ? `filters[neighborhood]=${activeFilters.items.neighborhood.name}`
-    : '';
+  const query = [];
+
+  for (let key in activeFilters.items) {
+    query.push(`filters[${key}]=${activeFilters.items[key]}`);
+  }
+
   dispatch(requestProperties());
   try {
-    return fetch(`${baseUrl}/properties/?${query}`)
+    return fetch(`${baseUrl}/properties/?${query.join('&')}`)
       .then((response) => response.json())
       .then((json) => dispatch(receiveProperties(json)));
   } catch (err) {
