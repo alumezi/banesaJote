@@ -86,7 +86,9 @@ export const fetchProperties = () => (
   const query = [];
 
   for (let key in activeFilters.items) {
-    query.push(`filters[${key}]=${activeFilters.items[key]}`);
+    if (activeFilters.items[key]) {
+      query.push(`filters[${key}]=${activeFilters.items[key]}`);
+    }
   }
 
   dispatch(requestProperties());

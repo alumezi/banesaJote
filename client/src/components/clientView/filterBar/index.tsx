@@ -11,14 +11,25 @@ export const FilterBar = () => {
   const dispatch = useDispatch();
   const state = useSelector((state: RootState) => state);
   const filters = state.filters;
-  const { neighborhood } = state.activeFilters.items;
+  const allActiveFilters = state.activeFilters.items;
 
   const handleLocationChange = (locationItem: IFilter) => {
-    console.log(
-      '🚀 ~ file: index.tsx ~ line 17 ~ handleLocationChange ~ locationItem',
-      locationItem
+    dispatch(
+      setActiveFilters({
+        ...allActiveFilters,
+        neighborhood: locationItem.searchKey,
+      })
     );
-    dispatch(setActiveFilters({ neighborhood: locationItem.searchKey }));
+    dispatch(fetchProperties());
+  };
+
+  const handleNumberOfRoomsChange = (locationItem: IFilter) => {
+    dispatch(
+      setActiveFilters({
+        ...allActiveFilters,
+        numberOfRooms: locationItem.searchKey,
+      })
+    );
     dispatch(fetchProperties());
   };
 
@@ -32,7 +43,7 @@ export const FilterBar = () => {
         <Select
           items={filters.items.neighborhood}
           onChange={handleLocationChange}
-          value={neighborhood?.name}
+          value={allActiveFilters.neighborhood?.name}
         />
       </Block>
       <Block classes="w-2/12">
@@ -42,7 +53,11 @@ export const FilterBar = () => {
         <Input prepend="€" />
       </Block>
       <Block classes="w-2/12">
-        <Select items={filters.items.byNumberOfRooms} />
+        <Select
+          items={filters.items.byNumberOfRooms}
+          onChange={handleNumberOfRoomsChange}
+          value={allActiveFilters.numberOfRooms?.name}
+        />
       </Block>
       <Block classes="w-2/12">
         <Select items={filters.items.byParkingTypes} />

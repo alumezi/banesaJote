@@ -18,7 +18,6 @@ const PropertyRouter = express_1.default.Router();
 const multer_1 = __importDefault(require("multer"));
 const upload = (0, multer_1.default)({ dest: 'uploads/' });
 const property_1 = __importDefault(require("../models/property"));
-const logger_1 = __importDefault(require("../utils/logger"));
 // import { requireLogin } from '../utils/middleware';
 PropertyRouter.get('/info', (request, response) => {
     property_1.default.countDocuments({}).then((count) => {
@@ -33,7 +32,6 @@ PropertyRouter.get('/', (request, response, next) => {
     // if (!token || !decodedToken.id) {
     //   return response.status(401).json({ error: 'token missing or invalid' });
     // }
-    logger_1.default.info('🚀 ~ file: properties.ts ~ line 32 ~ PropertyRouter.get ~ filters', request.query.filters);
     return property_1.default.find(request.query.filters)
         .then((res) => {
         response.json(res);

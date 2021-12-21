@@ -22,32 +22,32 @@ FilterRouter.post('/seed', async (request, response) => {
         {
           id: '',
           name: 'Aktash',
-          searchKey: 'aktash',
+          searchKey: 'Aktash',
         },
         {
           id: '',
           name: 'Ulpiane',
-          searchKey: 'ulpiane',
+          searchKey: 'Ulpiane',
         },
         {
           id: '',
           name: 'Dardani',
-          searchKey: 'dardani',
+          searchKey: 'Dardani',
         },
         {
           id: '',
           name: 'Rruga B',
-          searchKey: 'rruga b',
+          searchKey: 'Rruga B',
         },
         {
           id: '',
           name: 'Mati 1',
-          searchKey: 'mati 1',
+          searchKey: 'Mati 1',
         },
         {
           id: '',
           name: 'Lagjia e spitalit',
-          searchKey: 'lagjia e spitalit',
+          searchKey: 'Lagjia e spitalit',
         },
       ],
     },
@@ -82,30 +82,30 @@ FilterRouter.post('/seed', async (request, response) => {
         {
           id: '01',
           name: 'Ska parking',
-          searchKey: 'ska parking',
+          searchKey: 'Ska parking',
         },
         {
           id: '02',
           name: 'Parking Komunal',
-          searchKey: 'parking komunal',
+          searchKey: 'Parking Komunal',
         },
         {
           id: '03',
           name: 'Garazhe',
-          searchKey: 'garazhe',
+          searchKey: 'Garazhe',
         },
         {
           id: '04',
           name: 'Parking Banesor',
-          searchKey: 'parking banesor',
+          searchKey: 'Parking Banesor',
         },
       ],
     },
     {
       name: 'features',
       filters: [
-        { id: '01', name: 'Terrase', searchKey: 'terrace' },
-        { id: '02', name: 'Kuzhine', searchKey: 'kitchen' },
+        { id: '01', name: 'Terrase', searchKey: 'Terrase' },
+        { id: '02', name: 'Terrase', searchKey: 'Terrase' },
       ],
     },
     {
@@ -113,7 +113,7 @@ FilterRouter.post('/seed', async (request, response) => {
       filters: [
         { id: '01', name: 'wifi', searchKey: 'wifi' },
         { id: '02', name: 'tv', searchKey: 'tv' },
-        { id: '02', name: 'washingMachine', searchKey: 'washingmachine' },
+        { id: '02', name: 'washingMachine', searchKey: 'washingMachine' },
         { id: '02', name: 'fridge', searchKey: 'fridge' },
       ],
     },

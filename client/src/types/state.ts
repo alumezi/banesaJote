@@ -11,7 +11,7 @@ interface StateFilters {
 }
 
 interface StateActiveFilters {
-  neighborhood: IFilter;
+  name: string;
   items: IActiveFilter;
 }
 
