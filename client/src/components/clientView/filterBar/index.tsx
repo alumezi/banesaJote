@@ -43,10 +43,6 @@ export const FilterBar = () => {
     dispatch(fetchProperties());
   };
 
-  if (filters.isFetching) {
-    return null;
-  }
-  console.log('allActiveFilters', allActiveFilters);
   return (
     <div className="flex space-x-4 mb-3 px-4">
       <Block classes="w-2/12">

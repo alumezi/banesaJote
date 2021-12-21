@@ -36,7 +36,7 @@ interface AddFiltersActionProps {
 
 const user = (
   state = {
-    isFetching: false,
+    isFetching: true,
     user: {},
   },
   action: UserActionProps
@@ -61,7 +61,7 @@ const user = (
 
 const properties = (
   state = {
-    isFetching: false,
+    isFetching: true,
     items: [],
   },
   action: PropertyActionProps
@@ -86,7 +86,7 @@ const properties = (
 
 const filters = (
   state = {
-    isFetching: false,
+    isFetching: true,
     items: {},
   },
   action: FiltersActionProps
