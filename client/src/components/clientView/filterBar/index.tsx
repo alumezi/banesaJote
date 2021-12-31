@@ -1,3 +1,4 @@
+import ReactLoading from 'react-loading';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Select } from '../../../lib/components/select';
@@ -42,6 +43,18 @@ export const FilterBar = () => {
     );
     dispatch(fetchProperties());
   };
+
+  if (filters.isFetching) {
+    return (
+      <ReactLoading
+        height={'30%'}
+        width={'30%'}
+        className="react-loading"
+        color="#28A745"
+        type="bubbles"
+      />
+    );
+  }
 
   return (
     <div className="flex space-x-4 mb-3 px-4">

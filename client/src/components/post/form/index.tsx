@@ -159,7 +159,7 @@ export function PostFormComponent({
 
           <div className="col-span-6 sm:col-span-4">
             <Select
-              items={filterData.byLocation}
+              items={filterData.neighborhood}
               label="Lokacioni"
               value={formik.values.neighborhood}
               onBlur={formik.handleBlur}

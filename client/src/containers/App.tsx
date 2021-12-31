@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Switch, Route, useHistory } from 'react-router-dom';
-import ReactLoading from 'react-loading';
 
 import Nav from '../components/clientView/nav';
 import { FilterBar } from '../components/clientView/filterBar';
@@ -66,20 +65,6 @@ export function App() {
     setUser(null);
     setLocalStorageUser(null);
   };
-
-  console.log('🚀 ~ file: App.tsx ~ line 71 ~ App ~ properties', properties);
-  console.log('🚀 ~ file: App.tsx ~ line 72 ~ App ~ filters', filters);
-  if (properties.isFetching || filters.isFetching) {
-    return (
-      <ReactLoading
-        height={'30%'}
-        width={'30%'}
-        className="react-loading"
-        color="#28A745"
-        type="bubbles"
-      />
-    );
-  }
 
   return (
     <Switch>
