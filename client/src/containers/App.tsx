@@ -13,6 +13,7 @@ import { IProperty, IUser, RootState } from '../types';
 import { useLocalStorageState } from '../util';
 import { fetchFilters, fetchProperties } from '../actions';
 import './App.css';
+import { PrivacyPolicy } from '../components/privacyPolicy';
 
 export function App() {
   const { filters, properties } = useSelector((state: RootState) => state);
@@ -72,6 +73,9 @@ export function App() {
         <Nav logOut={logOut} />
         <FilterBar />
         <MainBody />
+      </Route>
+      <Route path="/privacy-policy" exact>
+        <PrivacyPolicy />
       </Route>
       <Route path="/login">
         <LoginComponent submit={submitLogin} />
