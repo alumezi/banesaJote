@@ -20,7 +20,6 @@ const userSchema = new Schema({
   user_link: String,
   passwordHash: {
     type: String,
-    required: false,
   },
   properties: [
     {

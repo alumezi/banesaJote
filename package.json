@@ -16,7 +16,7 @@
         "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
         "build:ui": "rm -rf build && cd ./client && npm run build --prod  && cp -r build ../dist/js",
         "deploy:manual": "git push heroku main",
-        "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push",
+        "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push && git push heroku",
         "deploy:only": "git add . && git commit -m deploy && git push heroku",
         "logs:prod": "heroku logs --tail",
         "lint": "eslint ."
