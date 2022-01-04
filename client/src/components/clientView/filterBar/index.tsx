@@ -63,7 +63,7 @@ export const FilterBar = () => {
           items={filters.items.neighborhood}
           onChange={handleLocationChange}
           value={allActiveFilters.neighborhood?.name}
-          defaultValue="Te gjitha"
+          defaultValue="Te gjith"
         />
       </Block>
       <Block classes="w-2/12">

@@ -4,6 +4,7 @@ import logo from '../../../assets/logo.png';
 import { IUser } from '../../../types';
 import { UserAvatar } from './user';
 import { ErrorBoundary } from '../../errorBoundary';
+import { FacebookIcon } from '../../../lib/components/icons';
 
 export default function Navigation({
   loggedIn,
@@ -38,12 +39,10 @@ export default function Navigation({
           {loggedIn ? (
             <UserAvatar logOut={logOut} />
           ) : (
-            <Link
-              to="login"
-              className="mx-8 whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
-            >
-              Kyçu
-            </Link>
+            <a href="/facebook-login" className="facebook-login">
+              <FacebookIcon className="facebook-icon" />{' '}
+              <span className="align-middle">Kyçu me facebook</span>
+            </a>
           )}
         </div>
       </div>
