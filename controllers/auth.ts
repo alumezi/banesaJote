@@ -10,6 +10,7 @@ AuthRouter.get(
   '/auth/facebook/callback',
   passport.authenticate('facebook'),
   (req, res) => {
+    console.log('🚀 ~ file: auth.ts ~ line 13 ~ req', req);
     res.redirect('/');
   }
 );
