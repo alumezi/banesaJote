@@ -1,5 +1,6 @@
 import Express from 'express';
 import passport from 'passport';
+import logger from '../utils/logger';
 
 const AuthRouter = Express.Router();
 
@@ -20,7 +21,10 @@ AuthRouter.get('/logout', (req, res) => {
 });
 
 AuthRouter.get('/current_user', (req, res) => {
-  res.json(req.user);
+  logger.info('🚀 ~ file: auth.ts ~ line 23 ~ AuthRouter.get ~ req', req);
+  if (req.user) {
+    res.json(req.user);
+  }
 });
 
 export default AuthRouter;
