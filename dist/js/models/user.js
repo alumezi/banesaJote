@@ -23,7 +23,6 @@ const userSchema = new mongoose_1.Schema({
     user_link: String,
     passwordHash: {
         type: String,
-        required: false,
     },
     properties: [
         {

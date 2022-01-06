@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const passport_1 = __importDefault(require("passport"));
 const passport_facebook_1 = require("passport-facebook");
 const user_1 = __importDefault(require("../models/user"));
+const logger_1 = __importDefault(require("../utils/logger"));
 exports.default = () => {
     passport_1.default.use(new passport_facebook_1.Strategy({
         clientID: process.env.FACEBOOK_CLIENT_ID,
@@ -22,15 +23,18 @@ exports.default = () => {
         callbackURL: 'https://banesajote.herokuapp.com/auth/facebook/callback',
     }, (accessToken, refreshToken, profile, cb) => __awaiter(void 0, void 0, void 0, function* () {
         const existingUser = yield user_1.default.findOne({ facebookID: profile.id });
+        logger_1.default.info('existing user found', existingUser);
         if (existingUser) {
             return cb(null, existingUser);
         }
+        logger_1.default.info('no existing user found creating a new one');
         const user = yield new user_1.default({
             facebookID: profile.id,
             displayName: profile.displayName,
             emails: profile.emails,
             date: new Date(),
         }).save();
+        logger_1.default.info('🚀 ~ User just created', user);
         return cb(null, user);
     })));
     passport_1.default.serializeUser((user, cb) => {

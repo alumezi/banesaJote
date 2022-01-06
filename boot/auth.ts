@@ -1,6 +1,7 @@
 import passport from 'passport';
 import { Strategy } from 'passport-facebook';
 import User from '../models/user';
+import logger from '../utils/logger';
 
 export default () => {
   passport.use(
@@ -12,16 +13,18 @@ export default () => {
       },
       async (accessToken, refreshToken, profile, cb) => {
         const existingUser = await User.findOne({ facebookID: profile.id });
+        logger.info('existing user found', existingUser);
         if (existingUser) {
           return cb(null, existingUser);
         }
-
+        logger.info('no existing user found creating a new one');
         const user = await new User({
           facebookID: profile.id,
           displayName: profile.displayName,
           emails: profile.emails,
           date: new Date(),
         }).save();
+        logger.info('🚀 ~ User just created', user);
         return cb(null, user);
       }
     )
