@@ -12,6 +12,7 @@ export default () => {
         callbackURL: 'https://banesajote.herokuapp.com/auth/facebook/callback',
       },
       async (accessToken, refreshToken, profile, cb) => {
+        logger.info('looking for user', profile);
         const existingUser = await User.findOne({ facebookID: profile.id });
         logger.info('existing user found', existingUser);
         if (existingUser) {
