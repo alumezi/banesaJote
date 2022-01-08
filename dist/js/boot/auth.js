@@ -22,6 +22,7 @@ exports.default = () => {
         clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
         callbackURL: 'https://banesajote.herokuapp.com/auth/facebook/callback',
     }, (accessToken, refreshToken, profile, cb) => __awaiter(void 0, void 0, void 0, function* () {
+        logger_1.default.info('looking for user', profile);
         const existingUser = yield user_1.default.findOne({ facebookID: profile.id });
         logger_1.default.info('existing user found', existingUser);
         if (existingUser) {

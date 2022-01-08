@@ -31,13 +31,13 @@ const userSchema = new mongoose_1.Schema({
         },
     ],
 });
-userSchema.set('toJSON', {
-    transform: (document, returnedObject) => {
-        returnedObject.id = returnedObject._id.toString();
-        delete returnedObject._id;
-        delete returnedObject.__v;
-        delete returnedObject.passwordHash;
-    },
-});
+// userSchema.set('toJSON', {
+//   transform: (document, returnedObject) => {
+//     returnedObject.id = returnedObject._id.toString();
+//     delete returnedObject._id;
+//     delete returnedObject.__v;
+//     delete returnedObject.passwordHash;
+//   },
+// });
 userSchema.plugin(mongoose_unique_validator_1.default);
 exports.default = (0, mongoose_1.model)('User', userSchema);
