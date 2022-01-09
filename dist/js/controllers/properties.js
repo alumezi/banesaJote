@@ -63,7 +63,7 @@ PropertyRouter.get('/', (request, response, next) => {
 //     })
 //     .catch((error) => next(error));
 // });
-PropertyRouter.post('/create', upload.array('photos', 6), (request, response, next) => {
+PropertyRouter.post('/create', upload.array('pictures', 6), (request, response, next) => {
     const resource = request.body;
     if (!resource.address) {
         return response.status(400).json({
