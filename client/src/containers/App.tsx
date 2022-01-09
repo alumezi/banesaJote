@@ -70,7 +70,7 @@ export function App() {
   return (
     <Switch>
       <Route path="/" exact>
-        <Nav logOut={logOut} />
+        <Nav logOut={logOut} loggedIn={!!user} />
         <FilterBar />
         <MainBody />
       </Route>
@@ -81,7 +81,7 @@ export function App() {
         <LoginComponent submit={submitLogin} />
       </Route>
       <Route path="/post">
-        <Nav logOut={logOut} />
+        <Nav logOut={logOut} loggedIn={!!user} />
         <PostComponent
           filterData={filters.items}
           handleCreatePropertySubmit={handleCreatePropertySubmit}
