@@ -28,9 +28,9 @@ export function App() {
       dispatch(fetchProperties());
       dispatch(fetchFilters());
 
-      // const userFromAPI = await getUser();
+      const userFromAPI = await getUser();
 
-      // setUser(userFromAPI);
+      setUser(userFromAPI);
     };
     fetchData();
   }, [dispatch]);
