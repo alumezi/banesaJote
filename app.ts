@@ -40,14 +40,14 @@ logger.info();
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(middleware.extractToken);
 app.use(middleware.morganLogger);
-app.use(
-  cookieSession({
-    maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: [process.env.COOKIE_KEY as string],
-  })
-);
+// app.use(
+//   cookieSession({
+//     maxAge: 30 * 24 * 60 * 60 * 1000,
+//     keys: [process.env.COOKIE_KEY as string],
+//   })
+// );
 app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.session());
 
 app.use('/', AuthRouter);
 app.use('/api/login', LoginRouter);
