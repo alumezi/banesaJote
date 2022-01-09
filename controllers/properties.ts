@@ -61,7 +61,7 @@ PropertyRouter.get('/', (request, response, next) => {
 
 PropertyRouter.post(
   '/create',
-  upload.array('photos', 6),
+  upload.array('pictures', 6),
   (request, response, next) => {
     const resource = request.body;
 
