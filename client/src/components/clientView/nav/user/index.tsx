@@ -18,7 +18,7 @@ export function UserAvatar({
       {({ open }) => (
         <>
           <div>
-            <Menu.Button className="inline-flex justify-center w-full rounded-md border border-green-400 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:none">
+            <Menu.Button className="inline-flex justify-center w-full rounded-md border border-green-400 shadow-sm px-4 py-2 h-full bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:none">
               <UserIcon className="w-6" />
             </Menu.Button>
           </div>
@@ -38,27 +38,30 @@ export function UserAvatar({
               className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
             >
               <div className="py-1">
+                {/* <Menu.Item>
+                  {({ active }) => (
+                    <Link
+                      className="block w-full text-left px-4 py-2 text-sm"
+                      to="/profile"
+                    >
+                      Profili
+                    </Link>
+                  )}
+                </Menu.Item> */}
                 <Menu.Item>
-                  {({ active }) => <Link to="/profile">Profili</Link>}
+                  {({ active }) => (
+                    <button
+                      type="submit"
+                      onClick={logOut}
+                      className={classNames(
+                        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                        'block w-full text-left px-4 py-2 text-sm'
+                      )}
+                    >
+                      Shkyçu
+                    </button>
+                  )}
                 </Menu.Item>
-                <form method="POST" action="#">
-                  <Menu.Item>
-                    {({ active }) => (
-                      <button
-                        type="submit"
-                        onClick={logOut}
-                        className={classNames(
-                          active
-                            ? 'bg-gray-100 text-gray-900'
-                            : 'text-gray-700',
-                          'block w-full text-left px-4 py-2 text-sm'
-                        )}
-                      >
-                        Shkycu
-                      </button>
-                    )}
-                  </Menu.Item>
-                </form>
               </div>
             </Menu.Items>
           </Transition>
