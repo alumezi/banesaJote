@@ -13,7 +13,6 @@ import FilterRouter from './controllers/filters';
 import AuthRouter from './controllers/auth';
 import boot from './boot/auth';
 import 'express-async-errors';
-import fs from 'fs';
 
 const app = express();
 import middleware from './utils/middleware';

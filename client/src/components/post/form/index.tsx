@@ -96,7 +96,8 @@ export function PostFormComponent({
       Object.keys(objectTOSave).forEach((key) => {
         formData.append(key, JSON.stringify(objectTOSave[key]));
       });
-
+      console.log(values);
+      console.log(values.pictures);
       Array.from(values.pictures).forEach((item) => {
         formData.append('pictures', item);
       });

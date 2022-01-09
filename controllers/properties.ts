@@ -6,7 +6,6 @@ import multer from 'multer';
 
 const upload = multer({ dest: 'uploads/' });
 import Property from '../models/property';
-import logger from '../utils/logger';
 // import { requireLogin } from '../utils/middleware';
 
 PropertyRouter.get('/info', (request, response) => {
